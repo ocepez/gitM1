@@ -45,4 +45,4 @@ switch (new Date().getDay()) {
   case 6:
     day = "Samedi";
 }
-console.log("Aujourd'hui nous sommes " + day);
+console.log("Aujourd'hui nous sommes " + day+" !");
