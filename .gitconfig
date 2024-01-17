@@ -1,3 +1,18 @@
 [user]
 	email = Oceane.Pezennec.Henry@gmail.com
 	name = OcePez
+[alias]
+	pfl = push --force-with-lease
+	st = status
+  ci = commit
+  br = branch
+  bra = branch -a
+  co = checkout
+	sw = switch
+	nb = switch -c
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  rb  = rebase
+  rba = rebase --abort
+  rbc = rebase --continue
+  rbs = rebase --skip
