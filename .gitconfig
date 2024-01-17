@@ -16,3 +16,12 @@
   rba = rebase --abort
   rbc = rebase --continue
   rbs = rebase --skip
+ [help]
+ autocorrect = 1
+
+
+[pull]
+rebase = true
+
+[push]
+autoSetupRemote = true
