@@ -14,7 +14,7 @@ let aPerson = {
 
 // on peut également déclarer et initialiser un objet de la façon suivante :
 
-aPerson.name = 'Jean';
+aPerson.name = 'Jack';
 aPerson.age = 35;
 aPerson.gender = 'masculin';
 aPerson.interest = ['musique', 'badminton'];
