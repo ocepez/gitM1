@@ -1,0 +1,10 @@
+
+
+
+@Entity
+public class Commentaires {
+
+
+
+
+}
