@@ -30,21 +30,20 @@ public class EvenementServiceImpl implements EvenementService {
 
         return evenement;
     }
-    private DogDto EvenementEntityToDto(Evenement evenement){
+    private EvenementsDto EvenementEntityToDto(Evenement evenement){
         EvenementsDto evenementsDto = new EvenementsDto();
         evenementsDto.setDate_evenement(evenement.getDate_evenement());
         evenementsDto.setDesc_evenement(evenement.getDesc_evenement());
         evenementsDto.setNom_evenement(evenement.getNom_evenement());
-        evenementsDto.set
+         evenementsDto.setDuree_evenement(evenement.getDuree_evenement());
+        evenementsDto.setImage_evenement(evenementsDto.getImage_evenement());
         return evenementsDto;
     }
     @Override
     public List<Evenement> getAllEvenements() {
         List<Evenement> evenements = new ArrayList<>();
         Iterable<Evenement> evenements1 = evenementRepository.findAll();
-        evenements1.forEach(evenement -> {
-            evenements.add(chatDtoToEntity(evenement));
-        });
+        evenements1.forEach(evenements::add);
         return evenements;
     }
 

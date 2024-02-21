@@ -1,7 +1,7 @@
 package com.controllers;
 
 import com.entities.Evenement;
-import com.repositories.ChatRepository;
+import com.repositories.EvenementRepository;
 import com.services.EvenementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +16,10 @@ public class EvenementController {
     @Autowired
     private EvenementService evenementService;
 
-    private final ChatRepository chatRepository;
+    private final EvenementRepository evenementRepository;
 
-    public ChatServiceImpl(ChatRepository chatRepository){
-        this.chatRepository=chatRepository;
+    public EvenementController(EvenementRepository evenementRepository){
+        this.evenementRepository=evenementRepository;
     }
 
 

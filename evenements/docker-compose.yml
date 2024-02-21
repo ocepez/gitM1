@@ -5,6 +5,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: monMotDePasseSuperSecret
     volumes:
-      - /home/oce/Documents/UBO/M1 TIILA/S8/Architecture client-serveur orientées web et donnees/Projet/git/TPSPRINGLEVY/dbb/var/lib/mysql
+     # - /home/oce/Documents/UBO/M1 TIILA/S8/Architecture client-serveur orientées web et donnees/Projet/git/TPSPRINGLEVY/dbb/var/lib/mysql
+      - /home/oce/GitHub/gitM1/evenements/dbb
     ports:
-      - "3306:3306"
+      - "3309:3309"
