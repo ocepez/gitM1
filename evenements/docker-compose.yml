@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  mariadb:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: monMotDePasseSuperSecret
+    volumes:
+      - /home/oce/Documents/UBO/M1 TIILA/S8/Architecture client-serveur orientées web et donnees/Projet/git/TPSPRINGLEVY/dbb/var/lib/mysql
+    ports:
+      - "3306:3306"
