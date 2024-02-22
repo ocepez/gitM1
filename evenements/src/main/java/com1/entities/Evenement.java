@@ -1,12 +1,10 @@
-package com.entities;
+package com1.entities;
 
 
-import lombok.Data;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Evenement {
@@ -19,6 +17,12 @@ public class Evenement {
     private Date date_evenement;
     private String desc_evenement;
     private String image_evenement;
+
+    @ManyToMany
+    @JoinTable(name = "inscription",
+            joinColumns = @JoinColumn(name = "evenement_id"),
+            inverseJoinColumns = @JoinColumn(name = "membre_id"))
+    private Set<Membre> membres = new HashSet<>();
     private int id_lieu;
 
     public int getId_evenement() {
@@ -75,5 +79,13 @@ public class Evenement {
 
     public void setId_lieu(int id_lieu) {
         this.id_lieu = id_lieu;
+    }
+
+    public Set<Membre> getMembres() {
+        return membres;
+    }
+
+    public void setMembres(Set<Membre> membres) {
+        this.membres = membres;
     }
 }

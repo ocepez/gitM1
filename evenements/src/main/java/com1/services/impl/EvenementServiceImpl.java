@@ -1,15 +1,17 @@
-package com.services.impl;
-import com.dtos.DogDto;
-import com.dtos.EvenementsDto;
-import com.entities.Dog;
-import com.entities.Evenement;
-import com.repositories.EvenementRepository;
-import com.services.EvenementService;
+package com1.services.impl;
+import com1.dtos.EvenementsDto;
+import com1.entities.Evenement;
+import com1.entities.Membre;
+import com1.repositories.EvenementRepository;
+import com1.services.EvenementService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service("EvenementService")
 public class EvenementServiceImpl implements EvenementService {
@@ -48,22 +50,39 @@ public class EvenementServiceImpl implements EvenementService {
     }
 
     @Override
-    public ResponseEntity<String> setOneEvenement() {
-        return null;
+    public ResponseEntity<String> setOneEvenement(Evenement evenement) {
+        evenementRepository.save(evenement);
+        return new ResponseEntity<String>("L'evenement a été enregistré", HttpStatus.OK);
     }
 
     @Override
     public Evenement getOneEvenementById(int id) {
-        return null;
+
+        Optional<Evenement> tt  = evenementRepository.findById(id);
+        return tt.get();
     }
 
     @Override
-    public ResponseEntity<String> setOneEvenementById(int id) {
-        return null;
+    public ResponseEntity<String> setOneEvenementById(int id, Evenement evenement) {
+        Evenement evenement1= evenementRepository.getById(id);
+        evenement1.setImage_evenement(evenement.getImage_evenement());
+        evenement1.setDesc_evenement(evenement.getDesc_evenement());
+        evenement1.setDate_evenement(evenement.getDate_evenement());
+        evenement1.setDuree_evenement(evenement.getDuree_evenement());
+        evenement1.setNom_evenement(evenement.getNom_evenement());
+        evenementRepository.save(evenement1);
+        return new ResponseEntity<String>("Mise à Jour Evenement", HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<String> deleteOneEvenementById(int id) {
-        return null;
+        evenementRepository.deleteById(id);
+        return new ResponseEntity<>("Suppression de l'evenement", HttpStatus.OK);
+    }
+
+    @Override
+    public Set<Membre> getListeMembreByIdEvenement(int id) {
+        Evenement evenement = evenementRepository.getById(id);
+        return evenement.getMembres();
     }
 }
