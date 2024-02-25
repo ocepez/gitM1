@@ -1,5 +1,6 @@
 package com.ubo.commentaires;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.ConnectionString;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -26,6 +27,7 @@ public class CommentaireServlet extends HttpServlet {
 
     private MongoCollection<Commentaire> commentaireMongoCollection;
 
+
     public CommentaireServlet() {
         super();
         CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
@@ -43,23 +45,32 @@ public class CommentaireServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // Logique pour traiter la création d'un commentaire (POST)
+        String pathInfo = request.getPathInfo();
+        System.out.println("doPost : "+pathInfo);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        response.setContentType("application/json");
+
+        String json = objectMapper.writeValueAsString(Commentaire.class);
+        response.getWriter().write(json);
         response.setStatus(HttpServletResponse.SC_CREATED);
         response.getWriter().println("Commentaire créé avec succès");
     }
 
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getPathInfo(); // Récupérer le chemin de l'URL après "/commentaire/"
-
+        String pathInfo = request.getPathInfo(); // Récupérer le chemin de l'URL après "/commentaire/"
+        System.out.println("doPost : "+pathInfo);
         // Vérifier si un ID a été fourni
-        if (id == null || id.length() <= 1) {
+        if (pathInfo == null || pathInfo.length() <= 1) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().println("ID du commentaire manquant dans le chemin de l'URL");
             return;
         }
 
         // Récupérer l'ID du commentaire
-        id = id.substring(1); // Supprimer le "/" initial
+        String id = pathInfo.substring(1); // Supprimer le "/" initial
+        System.out.println("id = "+id);
         // Logique pour supprimer le commentaire avec l'ID spécifié (DELETE)
         response.getWriter().println("Commentaire avec l'ID " + id + " supprimé avec succès");
     }
