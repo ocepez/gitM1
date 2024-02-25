@@ -17,6 +17,8 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
@@ -39,7 +41,33 @@ public class CommentaireServlet extends HttpServlet {
         System.out.println("Connexion établie\n");
 
         this.commentaireMongoCollection = database.getCollection("commentaires", Commentaire.class);
+       if(commentaireMongoCollection != null){
+           System.out.println("Pas vide");
+       }else {
+           System.out.println("Vide");
+           System.console().printf("vide");
 
+       }
+    }
+
+    private List<Commentaire> getListeByMembre(int id){
+        List<Commentaire> commentaires = new ArrayList<>();
+        for(Commentaire commentaire : this.commentaireMongoCollection.find()){
+            if(commentaire.getId_membre() == id){
+                commentaires.add(commentaire);
+            }
+        }
+        return commentaires;
+    }
+
+    private List<Commentaire> getListeByEvenement(int id){
+        List<Commentaire> commentaires = new ArrayList<>();
+        for(Commentaire commentaire : this.commentaireMongoCollection.find()){
+            if(commentaire.getId_evenement() == id){
+                commentaires.add(commentaire);
+            }
+        }
+        return commentaires;
     }
 
     @Override
