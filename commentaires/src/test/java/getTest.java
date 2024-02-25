@@ -7,9 +7,8 @@ public class getTest {
 
     private CommentaireServlet commentaireServlet;
 
-    @BeforeAll
-    public void init(){
-        commentaireServlet = new CommentaireServlet();
+    public void init1(){
+        this.commentaireServlet = new CommentaireServlet();
     }
     @Test
     public void test1(){
