@@ -153,17 +153,17 @@ public class CommentaireServlet extends HttpServlet {
         response.setContentType("application/json");
         if (pathInfo.startsWith("/membre")) {
             // Logique pour récupérer les commentaires associés à un membre avec l'ID spécifié (GET)
-           try {
-               List<Commentaire> com = this.getListeByMembre(Integer.parseInt(id));
-               ObjectMapper mapper = new ObjectMapper();
-               String jsonCommentaires = mapper.writeValueAsString(com);
-              // System.out.println("json = "+jsonCommentaires);
-               response.getWriter().println(jsonCommentaires);
-           } catch (NumberFormatException e){
-               response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-               response.getWriter().println("Méthode de récupération de commentaire non valide");
+            try {
+                List<Commentaire> com = this.getListeByMembre(Integer.parseInt(id));
+                ObjectMapper mapper = new ObjectMapper();
+                String jsonCommentaires = mapper.writeValueAsString(com);
+                // System.out.println("json = "+jsonCommentaires);
+                response.getWriter().println(jsonCommentaires);
+            } catch (NumberFormatException e) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                response.getWriter().println("Méthode de récupération de commentaire non valide");
 
-           }
+            }
 
         } else if (pathInfo.startsWith("/evenement")) {
             // Logique pour récupérer les commentaires associés à un événement avec l'ID spécifié (GET)
