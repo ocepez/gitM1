@@ -31,12 +31,12 @@ public class CommentaireServlet extends HttpServlet {
         CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
         CodecRegistry pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));
 
-        ConnectionString connectionString = new ConnectionString("mongodb://obiwan.univ-brest.fr:27017");
+        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017");
         MongoClient mongoClient = MongoClients.create(connectionString);
-        MongoDatabase database = mongoClient.getDatabase("pezennec").withCodecRegistry(pojoCodecRegistry);
+        MongoDatabase database = mongoClient.getDatabase("commentaires").withCodecRegistry(pojoCodecRegistry);
         System.out.println("Connexion établie\n");
 
-        this.commentaireMongoCollection = database.getCollection("commentaire", Commentaire.class);
+        this.commentaireMongoCollection = database.getCollection("commentaires", Commentaire.class);
 
     }
 

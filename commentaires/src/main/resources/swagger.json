@@ -1,0 +1,482 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Evenements association",
+    "description": "Projet multi-api permettant un gestion simple des événements d'une association et de ces membres.\n\n## <u>Attributs personnalisés :</u>\n- **x-database :** Permet de lister les attributs qui seront appliqués aux champs du côté de la base de données.",
+    "version": "v1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Commentaires",
+      "description": "Commentaires des événements"
+    }
+  ],
+  "paths": {
+    "/commentaires": {
+      "post": {
+        "tags": [
+          "Commentaires"
+        ],
+        "summary": "Ajoute un commentaire à un événement",
+        "description": "Permet d'ajouter un commentaire à un événement.",
+        "operationId": "addCommentaire",
+        "requestBody": {
+          "description": "Toutes les propriétés sont attendues",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/commentaire"
+                  }
+                ],
+                "required": [
+                  "id_evenement",
+                  "id_membre",
+                  "contenu"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "La requête a réussi et a renvoyé l'identifiant du nouveau commentaire.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/commentaire/properties/id"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/commentaires/{id}": {
+      "delete": {
+        "tags": [
+          "Commentaires"
+        ],
+        "summary": "Supprime un commentaire",
+        "description": "Permet de supprimer un commentaire.",
+        "operationId": "deleteCommentaire",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/path-commentaire-id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/commentaires/membre/{id_membre}": {
+      "get": {
+        "tags": [
+          "Commentaires"
+        ],
+        "summary": "Récupère la liste des commentaires d'un membre",
+        "description": "Permet de récupérer la liste des commentaires d'un membre.",
+        "operationId": "getCommentairesMembre",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/path-commentaire-id_membre"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "La requête a réussi et a renvoyé la liste des commentaires du membre.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/commentaire"
+                  },
+                  "uniqueItems": true
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/commentaires/evenement/{id_evenement}": {
+      "get": {
+        "tags": [
+          "Commentaires"
+        ],
+        "summary": "Récupère la liste des commentaires d'un événement",
+        "description": "Permet de récupérer la liste des commentaires d'un événement.",
+        "operationId": "getCommentairesEvenement",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/path-commentaire-id_evenement"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "La requête a réussi et a renvoyé la liste des commentaires de l'événement.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/commentaire"
+                  },
+                  "uniqueItems": true
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "membre": {
+        "description": "Représente un membre.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 0,
+            "nullable": false,
+            "readOnly": true,
+            "x-database": {
+              "autoIncrement": true
+            },
+            "description": "Identifiant unique du membre.",
+            "example": 154
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "nullable": false,
+            "pattern": "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$",
+            "description": "Mail du membre.",
+            "example": "irene.perkins@example.com"
+          },
+          "nom": {
+            "type": "string",
+            "nullable": false,
+            "x-database": {
+              "primaryKey": true
+            },
+            "description": "Nom du membre.",
+            "example": "Perkins"
+          },
+          "prenom": {
+            "type": "string",
+            "nullable": false,
+            "x-database": {
+              "primaryKey": true
+            },
+            "description": "Prénom du membre.",
+            "example": "Irene"
+          },
+          "age": {
+            "type": "integer",
+            "minimum": 1,
+            "nullable": false,
+            "description": "Age du membre.",
+            "example": 34
+          },
+          "adresse": {
+            "type": "string",
+            "nullable": false,
+            "description": "Adresse du membre.",
+            "example": "12 Place des Étoiles, 75012 Paris, France"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "nullable": false,
+            "writeOnly": true,
+            "description": "Mot de passe du membre (`Gestion du hachage côté serveur`).",
+            "example": "S3cur!t3_P@ss"
+          }
+        }
+      },
+      "lieu": {
+        "description": "Représente un lieu pour des événements.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 0,
+            "nullable": false,
+            "readOnly": true,
+            "x-database": {
+              "primaryKey": true,
+              "autoIncrement": true
+            },
+            "description": "Identifiant unique du lieu.",
+            "example": 37
+          },
+          "adresse": {
+            "type": "string",
+            "nullable": false,
+            "description": "Adresse du lieu.",
+            "example": "29 Rue de la Fontaine, 75018 Paris, France"
+          },
+          "nom": {
+            "type": "string",
+            "nullable": false,
+            "description": "Nom du lieu.",
+            "example": "Montmartre"
+          },
+          "capacite": {
+            "type": "integer",
+            "minimum": 1,
+            "nullable": false,
+            "description": "Capacité du lieu.",
+            "example": 350
+          }
+        }
+      },
+      "evenement": {
+        "description": "Représente un événement.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 0,
+            "nullable": false,
+            "readOnly": true,
+            "x-database": {
+              "primaryKey": true,
+              "autoIncrement": true
+            },
+            "description": "Identifiant unique de l'événement.",
+            "example": 151
+          },
+          "nom": {
+            "type": "string",
+            "nullable": false,
+            "description": "Nom de l'événement.",
+            "example": "Festival Lumières Éclatantes"
+          },
+          "date": {
+            "type": "number",
+            "format": "unix-timestamp",
+            "nullable": false,
+            "description": "Date et heure de début de l'événement.",
+            "example": 1744762855
+          },
+          "duree": {
+            "type": "integer",
+            "minimum": 1,
+            "nullable": false,
+            "description": "Durée de l'événement (en heures ?).",
+            "example": 72
+          },
+          "nb_places": {
+            "type": "integer",
+            "minimum": 1,
+            "nullable": false,
+            "description": "Nombre maximal de participants.",
+            "example": 300
+          },
+          "id_lieu": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/lieu/properties/id"
+              }
+            ],
+            "readOnly": false
+          }
+        }
+      },
+      "inscription": {
+        "description": "Représente une inscription d'un membre à un événement.",
+        "properties": {
+          "id_membre": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/membre/properties/id"
+              }
+            ],
+            "readOnly": false
+          },
+          "id_evenement": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/evenement/properties/id"
+              }
+            ],
+            "readOnly": false
+          }
+        }
+      },
+      "commentaire": {
+        "description": "Représente le commentaire d'un membre pour un événement.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 0,
+            "nullable": false,
+            "readOnly": true,
+            "x-database": {
+              "primaryKey": true,
+              "autoIncrement": true
+            },
+            "description": "Identifiant unique du commentaire.",
+            "example": 512
+          },
+          "id_membre": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/membre/properties/id"
+              }
+            ],
+            "readOnly": false
+          },
+          "id_evenement": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/evenement/properties/id"
+              }
+            ],
+            "readOnly": false
+          },
+          "contenu": {
+            "type": "string",
+            "nullable": false,
+            "description": "Contenu du commentaire.",
+            "example": "Ça promet !"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "path-membre-id": {
+        "in": "path",
+        "name": "id",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/membre/properties/id"
+        }
+      },
+      "path-lieu-id": {
+        "in": "path",
+        "name": "id",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/lieu/properties/id"
+        }
+      },
+      "path-evenement-id": {
+        "in": "path",
+        "name": "id",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/evenement/properties/id"
+        }
+      },
+      "path-inscription-id_evenement": {
+        "in": "path",
+        "name": "id_evenement",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/evenement/properties/id"
+        }
+      },
+      "path-inscription-id_membre": {
+        "in": "path",
+        "name": "id_membre",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/membre/properties/id"
+        }
+      },
+      "path-commentaire-id": {
+        "in": "path",
+        "name": "id",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/commentaire/properties/id"
+        }
+      },
+      "path-commentaire-id_evenement": {
+        "in": "path",
+        "name": "id_evenement",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/commentaire/properties/id_evenement"
+        }
+      },
+      "path-commentaire-id_membre": {
+        "in": "path",
+        "name": "id_membre",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/commentaire/properties/id_membre"
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "La requête a réussi et a renvoyé du contenu.<br>`Description à modifier.`"
+      },
+      "201": {
+        "description": "La requête a réussi et une nouvelle ressource a été créée.<br>`Description à modifier.`"
+      },
+      "204": {
+        "description": "La requête a réussi et n'a pas renvoyé de contenu."
+      },
+      "400": {
+        "description": "Requête invalide."
+      },
+      "404": {
+        "description": "Ressource non trouvée."
+      },
+      "409": {
+        "description": "La requête provoquerait un conflit.<br>`Description à modifier.`"
+      },
+      "500": {
+        "description": "Erreur interne au serveur."
+      }
+    }
+  }
+}
