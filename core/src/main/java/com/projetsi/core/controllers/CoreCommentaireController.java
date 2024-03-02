@@ -29,27 +29,6 @@ public class CoreCommentaireController {
     }
 
     /**
-     * Obtient la liste de tous les Commentaires.
-     *
-     * @return La liste de tous les Commentaires.
-     */
-    @GetMapping
-    public List<Commentaire> getAllCommentaires() {
-        return coreCommentaireService.getAllCommentaires();
-    }
-
-    /**
-     * Obtient un Commentaire par son identifiant.
-     *
-     * @param id L'identifiant du Commentaire.
-     * @return Le Commentaire correspondant à l'identifiant.
-     */
-    @GetMapping("/{id}")
-    public Commentaire getCommentaire(@PathVariable int id) {
-        return coreCommentaireService.getCommentaireById(id);
-    }
-
-    /**
      * Crée un nouveau Commentaire.
      *
      * @param Commentaire Le Commentaire à créer.
@@ -64,14 +43,13 @@ public class CoreCommentaireController {
      * Met à jour un Commentaire existant.
      *
      * @param id L'identifiant du Commentaire à mettre à jour.
-     * @param Commentaire Les nouvelles données du Commentaire.
      * @return Le Commentaire mis à jour.
      */
-    @PutMapping("/{id}")
-    public Commentaire updateCommentaire(@PathVariable int id, @RequestBody Commentaire Commentaire) throws Exception {
+    @GetMapping("/Membre/{id}")
+    public Commentaire getCommentaireByMembre(@PathVariable int id) throws Exception {
         Commentaire CommentaireExist = coreCommentaireService.getCommentaireById(id);
         if (CommentaireExist != null) {
-            CommentaireExist.setNom(Commentaire.getNom());
+            CommentaireExist.setContenu_commentaire(Commentair););
             CommentaireExist.setAdresse(Commentaire.getAdresse());
             CommentaireExist.setCapacite(Commentaire.getCapacite());
 

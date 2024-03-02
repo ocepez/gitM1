@@ -1,4 +1,4 @@
-package com.entities;
+package com.projetsi.core.entities;
 
 
 import javax.persistence.Entity;

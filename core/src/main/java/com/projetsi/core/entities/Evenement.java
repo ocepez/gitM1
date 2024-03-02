@@ -3,7 +3,9 @@
 // (powered by FernFlower decompiler)
 //
 
-package com.ubo.entity;
+package com.projetsi.core.entities;
+
+import jakarta.persistence.Table;
 
 import java.util.Date;
 import javax.persistence.Entity;
@@ -11,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+@Table(name = "Evenement")
 public class Evenement {
     @Id
     @GeneratedValue
