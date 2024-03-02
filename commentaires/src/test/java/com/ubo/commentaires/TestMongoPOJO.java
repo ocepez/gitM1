@@ -1,4 +1,4 @@
-package com.ubo.commentairesDAO;
+package com.ubo.commentaires;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.client.MongoClient;
@@ -10,9 +10,6 @@ import lombok.extern.slf4j.XSlf4j;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
-
-import java.util.Iterator;
-
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
@@ -33,10 +30,6 @@ public class TestMongoPOJO {
         System.out.println("Connexion établie\n");
 
         MongoCollection<Commentaire> commentaireMongoCollection = database.getCollection("commentaires", Commentaire.class);
-
-        Iterable<Commentaire> commentaires = commentaireMongoCollection.find();
-
-        Iterator<Commentaire> com = commentaires.iterator();
         for (Commentaire fed : commentaireMongoCollection.find()) {
             System.out.println("\n** membre : " + fed.getId_membre() + " **");
             System.out.println("\n** evenement : " + fed.getId_evenement() + " **");
