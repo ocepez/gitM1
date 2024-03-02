@@ -7,7 +7,9 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: app_db
     volumes:
-      - dbdata:/var/lib/mysql
+      - type: bind
+        source: ./dbdata
+        target: /var/lib/mysql
     ports:
       - "3306:3306"
   phpmyadmin:
@@ -19,15 +21,23 @@ services:
       PMA_HOST: mariadb
       PMA_PORT: 3306
       version: '3'
+    volumes:
+      - type: bind
+        source: ./dbdata
+        target: /var/lib/mysql
   mongodb:
     image: mongo
     container_name: mongodb
     ports:
       - "27017:27017"
+    volumes:
+      - type: bind
+        source: ./dbdata
+        target: /var/lib/mysql
 volumes:
   dbdata:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /media/oce/Transcend/docker/
+      device: /home/oce/GitHub/gitM1/dbdata
