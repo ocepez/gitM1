@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.bson.Document;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
@@ -59,7 +60,7 @@ public class CommentaireServlet extends HttpServlet {
      * @param id l'id d'un membre
      * @return la liste des commentaires d'un membre
      */
-    private List<Commentaire> getListeByMembre(int id) {
+    List<Commentaire> getListeByMembre(int id) {
         List<Commentaire> commentaries = new ArrayList<>();
         for (Commentaire commentaire : this.commentaireMongoCollection.find()) {
             if (commentaire.getId_membre() == id) {
@@ -125,10 +126,13 @@ public class CommentaireServlet extends HttpServlet {
 
         // Récupérer l'ID du commentaire
         String[] ids = pathInfo.split("/");
-        String id = ids[2];
+        String id = ids[1];
         System.out.println("ID = " + id);
+        commentaireMongoCollection.deleteOne(new Document("_id", id));
         // Logique pour supprimer le commentaire avec l'ID spécifié (DELETE)
         response.getWriter().println("Commentaire avec l'ID " + id + " supprimé avec succès");
+        response.setStatus(HttpServletResponse.SC_OK);
+
     }
 
     /**
@@ -159,6 +163,8 @@ public class CommentaireServlet extends HttpServlet {
                 String jsonCommentaires = mapper.writeValueAsString(com);
                 // System.out.println("json = "+jsonCommentaires);
                 response.getWriter().println(jsonCommentaires);
+                response.setStatus(HttpServletResponse.SC_OK);
+
             } catch (NumberFormatException e) {
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 response.getWriter().println("Méthode de récupération de commentaire non valide");
@@ -171,6 +177,8 @@ public class CommentaireServlet extends HttpServlet {
             ObjectMapper mapper = new ObjectMapper();
             String jsonCommentaires = mapper.writeValueAsString(com);
             response.getWriter().println(jsonCommentaires);
+            response.setStatus(HttpServletResponse.SC_OK);
+
         } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().println("Méthode de récupération de commentaire non valide");

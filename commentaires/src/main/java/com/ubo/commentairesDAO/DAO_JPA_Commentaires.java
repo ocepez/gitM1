@@ -1,7 +1,6 @@
 package com.ubo.commentairesDAO;
 
 import com.ubo.entity.Commentaire;
-import com.ubo.entity.Lieu;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -11,6 +10,24 @@ public class DAO_JPA_Commentaires extends DAO_JPA<Commentaire> {
 
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("LieuxPU");
     private EntityManager em;
+
+    /**
+     * Constructeur qui initialise l'EntityManager.
+     */
+    public DAO_JPA_Commentaires() throws DAOException {
+        super();
+        this.em = emf.createEntityManager();
+
+        EntityTransaction t = null;
+        try {
+            t = (EntityTransaction) DAO.getEntityManager().getTransaction();
+            t.begin();
+            //   DAO.getEntityManager().remove(data);
+            t.commit();
+        } catch (Exception e) {
+            if (t != null) t.rollback();
+        }
+    }
 
     /**
      * Récupère la liste de tous les lieux à partir de la base de données.
@@ -31,7 +48,6 @@ public class DAO_JPA_Commentaires extends DAO_JPA<Commentaire> {
         return com;
     }
 
-
     @Override
     public Commentaire find(int id) throws DAOException {
         Commentaire com = DAO.getEntityManager().find(Commentaire.class, id);
@@ -46,7 +62,7 @@ public class DAO_JPA_Commentaires extends DAO_JPA<Commentaire> {
     public void create(Commentaire data) throws DAOException {
         EntityTransaction t = null;
         try {
-      //      t = DAO.getEntityManager().getTransaction();
+            //      t = DAO.getEntityManager().getTransaction();
             t.begin();
             DAO.getEntityManager().persist(data);
             t.commit();
@@ -59,7 +75,7 @@ public class DAO_JPA_Commentaires extends DAO_JPA<Commentaire> {
     public void update(Commentaire data) throws DAOException {
         EntityTransaction t = null;
         try {
-     //       t = DAO.getEntityManager().getTransaction();
+            //       t = DAO.getEntityManager().getTransaction();
             t.begin();
             DAO.getEntityManager().merge(data);
             // Forcer l'exécution des requêtes avant de valider la transaction.
@@ -73,25 +89,5 @@ public class DAO_JPA_Commentaires extends DAO_JPA<Commentaire> {
     @Override
     public void delete(Commentaire data) throws DAOException {
 
-    }
-
-
-
-    /**
-     * Constructeur qui initialise l'EntityManager.
-     */
-    public DAO_JPA_Commentaires() throws DAOException {
-        super();
-        this.em =emf.createEntityManager();
-
-        EntityTransaction t = null;
-        try {
-            t = (EntityTransaction) DAO.getEntityManager().getTransaction();
-            t.begin();
-         //   DAO.getEntityManager().remove(data);
-            t.commit();
-        } catch (Exception e) {
-            if (t != null) t.rollback();
-        }
     }
 }

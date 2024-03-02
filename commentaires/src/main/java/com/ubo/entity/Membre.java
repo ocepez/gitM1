@@ -1,9 +1,12 @@
 package com.ubo.entity;
 
 
+import lombok.Data;
 
+import javax.persistence.Entity;
 
-
+@Entity
+@Data
 public class Membre {
 
     private int id_membre;

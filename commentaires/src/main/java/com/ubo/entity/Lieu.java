@@ -1,7 +1,6 @@
 package com.ubo.entity;
 
 
-
 import lombok.Data;
 
 import javax.persistence.Entity;
