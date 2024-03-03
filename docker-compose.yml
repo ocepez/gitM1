@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb:10.6
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app_db
+    volumes:
+      - type: bind
+        source: ./dbdata
+        target: /var/lib/mysql
+    ports:
+      - "3306:3306"
+  phpmyadmin:
+    container_name: phpmyadmin
+    depends_on:
+      - mongodb
+    image: phpmyadmin
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      PMA_HOST: mongodb
+      PMA_PORT: 27017
+      version: '3'
+    volumes:
+      - type: bind
+        source: ./dbdata
+        target: /var/lib/mysql
+  mongodb:
+    restart: always
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - type: bind
+        source: ./dbdata
+        target: /var/lib/mysql
+    networks:
+      - mynetwork
+    command: mongod --port 27017
+  tomcat:
+    image: tomcat:latest
+    container_name: tomcat
+    depends_on:
+      - mongodb
+    ports:
+      - "8080:8080"
+    volumes:
+      - /home/oce/GitHub/gitM1/commentaires/build/libs/commentaires-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/commentaires.war
+    networks:
+      - mynetwork
+    environment:
+      MONGODB_HOST: mongodb
+networks:
+  mynetwork:
+    driver: bridge
+
+
+volumes:
+  dbdata:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/oce/GitHub/gitM1/dbdata
+

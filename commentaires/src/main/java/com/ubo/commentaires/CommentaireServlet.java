@@ -16,6 +16,7 @@ import org.bson.Document;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.springframework.context.annotation.Bean;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,6 +56,7 @@ public class CommentaireServlet extends HttpServlet {
 
         this.commentaireMongoCollection = database.getCollection("commentaires", Commentaire.class);
     }
+
 
     /**
      * @param id l'id d'un membre
@@ -156,14 +158,19 @@ public class CommentaireServlet extends HttpServlet {
         String id = ids[2];
         response.setContentType("application/json");
         if (pathInfo.startsWith("/membre")) {
+            System.out.println("doGet 2 : " + pathInfo);
+
             // Logique pour récupérer les commentaires associés à un membre avec l'ID spécifié (GET)
             try {
+                System.out.println("doGet 3 : " + pathInfo);
                 List<Commentaire> com = this.getListeByMembre(Integer.parseInt(id));
                 ObjectMapper mapper = new ObjectMapper();
                 String jsonCommentaires = mapper.writeValueAsString(com);
                 // System.out.println("json = "+jsonCommentaires);
+                System.out.println("doGet 4 : " + pathInfo);
                 response.getWriter().println(jsonCommentaires);
                 response.setStatus(HttpServletResponse.SC_OK);
+                System.out.println("doGet 5 : " + pathInfo);
 
             } catch (NumberFormatException e) {
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
