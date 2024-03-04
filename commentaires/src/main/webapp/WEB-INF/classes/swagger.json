@@ -10,10 +10,10 @@
       "url": "http://localhost:8080/Gradle___com_ubo___commentaires_1_0_SNAPSHOT_war__exploded_"
     },
     {
-      "url": "http://localhost:8080/commentaires"
+      "url": "http://localhost:8090/commentaires"
     },
     {
-      "url": "http://localhost:8080"
+      "url": "http://localhost:8090"
     }
   ],
   "tags": [
