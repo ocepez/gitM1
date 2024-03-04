@@ -65,10 +65,11 @@ public class EvenementServiceImpl implements EvenementService {
 
     private boolean exist(Evenement evenement1){
        List<Evenement> evenements1 = evenementRepository.findAll();
-       for(Evenement evenement : evenements1){
+       for(Evenement evenement : evenements1) {
            Date date = evenement.getDate_evenement();
-           if(evenement.getId_lieu() == evenement1.getId_lieu())
+      /*     if(evenement.getId_lieu() == evenement1.getId_lieu())
            {
+
                if (
                        evenement.getDate_evenement().toInstant()
                                .atZone(ZoneId.systemDefault())
@@ -96,6 +97,7 @@ public class EvenementServiceImpl implements EvenementService {
                    return true; // Les événements se chevauchent
                }
            }
+       }*/
        }
         return false;
     }
@@ -148,7 +150,6 @@ public class EvenementServiceImpl implements EvenementService {
         Evenement evenement1= evenementRepository.getById(id);
 
         if(exist(dtoToEntity(evenement))){
-            evenementRepository.save(evenement1);
             return new ResponseEntity<String>("L'événement à mettre à jour chevauche d'autres événements.", HttpStatus.CONFLICT);
         }
         EvenementInscriptionServiceImpl evenementInscriptionService = new EvenementInscriptionServiceImpl(this.evenementRepository,this.membreRepository);

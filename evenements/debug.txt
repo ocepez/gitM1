@@ -1,0 +1,477 @@
+[
+    {
+        "Id": "fe568817c5939c49ed5bc2519a94ea8d8ac9591c3a1b464d859dc8625e611335",
+        "Created": "2024-03-04T11:55:08.226962155Z",
+        "Path": "java",
+        "Args": [
+            "-jar",
+            "/evenements.jar"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 442422,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2024-03-04T12:00:19.811490388Z",
+            "FinishedAt": "2024-03-04T12:00:19.462288569Z"
+        },
+        "Image": "sha256:bb34f38ab7b66e511f6857156db75fa72ad4c9b373170c6d3c88f37daa4597f0",
+        "ResolvConfPath": "/var/lib/docker/containers/fe568817c5939c49ed5bc2519a94ea8d8ac9591c3a1b464d859dc8625e611335/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/fe568817c5939c49ed5bc2519a94ea8d8ac9591c3a1b464d859dc8625e611335/hostname",
+        "HostsPath": "/var/lib/docker/containers/fe568817c5939c49ed5bc2519a94ea8d8ac9591c3a1b464d859dc8625e611335/hosts",
+        "LogPath": "/var/lib/docker/containers/fe568817c5939c49ed5bc2519a94ea8d8ac9591c3a1b464d859dc8625e611335/fe568817c5939c49ed5bc2519a94ea8d8ac9591c3a1b464d859dc8625e611335-json.log",
+        "Name": "/api_evenement",
+        "RestartCount": 20,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "evenements_mynetwork",
+            "PortBindings": {
+                "8040/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "8040"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "always",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": [],
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware",
+                "/sys/devices/virtual/powercap"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/87952472517d3976d38cc4be9d24ce87ada0b7f5c80bb14a8395e5f7ea947655-init/diff:/var/lib/docker/overlay2/7iqfrm8ph18qqya3b7t0cxvyd/diff:/var/lib/docker/overlay2/8dc6228da285234c2eb40f4a9330c287a7a57408e5baa120a2fa933218f28e93/diff:/var/lib/docker/overlay2/3d2806ae6d4b4f5d55aa892da8bd90a2a192ee6ff28bbf56e4086894b2eb980b/diff",
+                "MergedDir": "/var/lib/docker/overlay2/87952472517d3976d38cc4be9d24ce87ada0b7f5c80bb14a8395e5f7ea947655/merged",
+                "UpperDir": "/var/lib/docker/overlay2/87952472517d3976d38cc4be9d24ce87ada0b7f5c80bb14a8395e5f7ea947655/diff",
+                "WorkDir": "/var/lib/docker/overlay2/87952472517d3976d38cc4be9d24ce87ada0b7f5c80bb14a8395e5f7ea947655/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "fe568817c593",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "ExposedPorts": {
+                "8040/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "SPRING_DATASOURCE_USERNAME=root",
+                "SPRING_DATASOURCE_PASSWORD=root",
+                "SPRING_DATASOURCE_URL=jdbc:mariadb://database1:3306/e21901204_db2",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/jvm/default-jvm/bin",
+                "LANG=C.UTF-8",
+                "JAVA_HOME=/usr/lib/jvm/default-jvm"
+            ],
+            "Cmd": null,
+            "Image": "api_evenement:latest",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": [
+                "java",
+                "-jar",
+                "/evenements.jar"
+            ],
+            "OnBuild": null,
+            "Labels": {
+                "com.docker.compose.config-hash": "eccd6d30c51b34e90d3de08d902f645d69edd5e34ee22e08c1f0566ec821a292",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.depends_on": "mariadb:service_started:false",
+                "com.docker.compose.image": "sha256:bb34f38ab7b66e511f6857156db75fa72ad4c9b373170c6d3c88f37daa4597f0",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "evenements",
+                "com.docker.compose.project.config_files": "/home/oce/GitHub/gitM1/evenements/docker-compose.yml",
+                "com.docker.compose.project.working_dir": "/home/oce/GitHub/gitM1/evenements",
+                "com.docker.compose.service": "api_evenement",
+                "com.docker.compose.version": "2.20.3"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "6e46d9dd26e2e7ac557acce482ce37248d5cb1debd72e09f7f3cb5145df8d39b",
+            "SandboxKey": "/var/run/docker/netns/6e46d9dd26e2",
+            "Ports": {
+                "8040/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "8040"
+                    },
+                    {
+                        "HostIp": "::",
+                        "HostPort": "8040"
+                    }
+                ]
+            },
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "evenements_mynetwork": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "api_evenement",
+                        "fe568817c593"
+                    ],
+                    "MacAddress": "02:42:c0:a8:00:02",
+                    "NetworkID": "a30c76a2962a288444c74cf5fd168199c764ed8ed3bc0a45ce6ad069ed92fa14",
+                    "EndpointID": "9efb7b0a514d0336a8fbe49e7abc8bbeafc21be0ddf2cf00e517e8c02c9ff1cb",
+                    "Gateway": "192.168.0.1",
+                    "IPAddress": "192.168.0.2",
+                    "IPPrefixLen": 20,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DriverOpts": null,
+                    "DNSNames": [
+                        "api_evenement",
+                        "fe568817c593"
+                    ]
+                }
+            }
+        }
+    }
+]
+[
+    {
+        "Id": "fe568817c5939c49ed5bc2519a94ea8d8ac9591c3a1b464d859dc8625e611335",
+        "Created": "2024-03-04T11:55:08.226962155Z",
+        "Path": "java",
+        "Args": [
+            "-jar",
+            "/evenements.jar"
+        ],
+        "State": {
+            "Status": "restarting",
+            "Running": true,
+            "Paused": false,
+            "Restarting": true,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 1,
+            "Error": "",
+            "StartedAt": "2024-03-04T12:00:19.811490388Z",
+            "FinishedAt": "2024-03-04T12:00:33.590558435Z"
+        },
+        "Image": "sha256:bb34f38ab7b66e511f6857156db75fa72ad4c9b373170c6d3c88f37daa4597f0",
+        "ResolvConfPath": "/var/lib/docker/containers/fe568817c5939c49ed5bc2519a94ea8d8ac9591c3a1b464d859dc8625e611335/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/fe568817c5939c49ed5bc2519a94ea8d8ac9591c3a1b464d859dc8625e611335/hostname",
+        "HostsPath": "/var/lib/docker/containers/fe568817c5939c49ed5bc2519a94ea8d8ac9591c3a1b464d859dc8625e611335/hosts",
+        "LogPath": "/var/lib/docker/containers/fe568817c5939c49ed5bc2519a94ea8d8ac9591c3a1b464d859dc8625e611335/fe568817c5939c49ed5bc2519a94ea8d8ac9591c3a1b464d859dc8625e611335-json.log",
+        "Name": "/api_evenement",
+        "RestartCount": 21,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "evenements_mynetwork",
+            "PortBindings": {
+                "8040/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "8040"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "always",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": [],
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware",
+                "/sys/devices/virtual/powercap"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/87952472517d3976d38cc4be9d24ce87ada0b7f5c80bb14a8395e5f7ea947655-init/diff:/var/lib/docker/overlay2/7iqfrm8ph18qqya3b7t0cxvyd/diff:/var/lib/docker/overlay2/8dc6228da285234c2eb40f4a9330c287a7a57408e5baa120a2fa933218f28e93/diff:/var/lib/docker/overlay2/3d2806ae6d4b4f5d55aa892da8bd90a2a192ee6ff28bbf56e4086894b2eb980b/diff",
+                "MergedDir": "/var/lib/docker/overlay2/87952472517d3976d38cc4be9d24ce87ada0b7f5c80bb14a8395e5f7ea947655/merged",
+                "UpperDir": "/var/lib/docker/overlay2/87952472517d3976d38cc4be9d24ce87ada0b7f5c80bb14a8395e5f7ea947655/diff",
+                "WorkDir": "/var/lib/docker/overlay2/87952472517d3976d38cc4be9d24ce87ada0b7f5c80bb14a8395e5f7ea947655/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "fe568817c593",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "ExposedPorts": {
+                "8040/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "SPRING_DATASOURCE_USERNAME=root",
+                "SPRING_DATASOURCE_PASSWORD=root",
+                "SPRING_DATASOURCE_URL=jdbc:mariadb://database1:3306/e21901204_db2",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/jvm/default-jvm/bin",
+                "LANG=C.UTF-8",
+                "JAVA_HOME=/usr/lib/jvm/default-jvm"
+            ],
+            "Cmd": null,
+            "Image": "api_evenement:latest",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": [
+                "java",
+                "-jar",
+                "/evenements.jar"
+            ],
+            "OnBuild": null,
+            "Labels": {
+                "com.docker.compose.config-hash": "eccd6d30c51b34e90d3de08d902f645d69edd5e34ee22e08c1f0566ec821a292",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.depends_on": "mariadb:service_started:false",
+                "com.docker.compose.image": "sha256:bb34f38ab7b66e511f6857156db75fa72ad4c9b373170c6d3c88f37daa4597f0",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "evenements",
+                "com.docker.compose.project.config_files": "/home/oce/GitHub/gitM1/evenements/docker-compose.yml",
+                "com.docker.compose.project.working_dir": "/home/oce/GitHub/gitM1/evenements",
+                "com.docker.compose.service": "api_evenement",
+                "com.docker.compose.version": "2.20.3"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "6e46d9dd26e2e7ac557acce482ce37248d5cb1debd72e09f7f3cb5145df8d39b",
+            "SandboxKey": "/var/run/docker/netns/6e46d9dd26e2",
+            "Ports": {},
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "evenements_mynetwork": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "api_evenement",
+                        "fe568817c593"
+                    ],
+                    "MacAddress": "",
+                    "NetworkID": "a30c76a2962a288444c74cf5fd168199c764ed8ed3bc0a45ce6ad069ed92fa14",
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DriverOpts": null,
+                    "DNSNames": [
+                        "api_evenement",
+                        "fe568817c593"
+                    ]
+                }
+            }
+        }
+    }
+]
