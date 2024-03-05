@@ -1,0 +1,38 @@
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Docker Compose reference guide at
+# https://docs.docker.com/go/compose-spec-reference/
+
+# Here the instructions define your application as a service called "server".
+# This service is built from the Dockerfile in the current directory.
+# You can add other services your application may depend on here, such as a
+# database or a cache. For examples, see the Awesome Compose repository:
+# https://github.com/docker/awesome-compose
+services:
+  api_lieux:
+    image: tomcat:latest
+    build:
+      context: .
+    ports:
+      - 8010:8010
+    volumes:
+      - /home/oce/GitHub/gitM1/lieux/build/target/lieux-api-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/lieux.war
+    networks:
+      - mynetwork
+    depends_on:
+      - mariadb
+  mariadb:
+    container_name: mariadb
+    image: mariadb:latest
+    restart: no
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: e21901204_db2
+    ports:
+      - 3306:3306
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
+    driver: bridge
+    attachable: true
+    name: mynetwork
