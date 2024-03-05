@@ -15,7 +15,7 @@ public class TestUpdateLieu {
 
         Lieu lieu = ls.getLieu(1);
         lieu.setNom(lieu.getNom());
-        lieu.setAdresse("4, Avenue des Oies");
+        lieu.setAdresse("15, Avenue des Oies");
         lieu.setCapacite(lieu.getCapacite());
 
         ls.updateLieu(lieu);

@@ -111,8 +111,8 @@ public class LieuServlet extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
-        ObjectMapper objectMapper = new ObjectMapper();
 
+        // Vérifier si l'URL est correcte
         if (pathInfo == null || !pathInfo.matches("/\\d+")) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().write("URL incorrecte.");
@@ -122,29 +122,45 @@ public class LieuServlet extends HttpServlet {
         String[] pathParts = pathInfo.split("/");
 
         try {
+            // Récupérer l'ID du lieu depuis l'URL
             int idLieu = Integer.parseInt(pathParts[1]);
             Lieu lieu = lieuService.getLieu(idLieu);
 
+            // Vérifier si le lieu existe
             if (lieu == null) {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 return;
             }
 
             try (BufferedReader reader = request.getReader()) {
+                // Vérifier si le corps de la requête contient des données
                 if (reader != null) {
+                    // Mapper les données JSON reçues sur un objet Lieu
+                    ObjectMapper objectMapper = new ObjectMapper();
                     Lieu nouveauLieu = objectMapper.readValue(reader, Lieu.class);
+
+                    // Mettre à jour les propriétés du lieu avec les nouvelles valeurs
                     lieu.setNom(nouveauLieu.getNom());
                     lieu.setAdresse(nouveauLieu.getAdresse());
                     lieu.setCapacite(nouveauLieu.getCapacite());
 
+                    // Effectuer la mise à jour dans la base de données
                     try {
                         lieuService.updateLieu(lieu);
+
+                        // Convertir le lieu mis à jour en JSON
+                        String lieuJson = objectMapper.writeValueAsString(lieu);
+
+                        // Écrire le JSON dans le corps de la réponse
+                        response.setContentType("application/json");
+                        response.getWriter().write(lieuJson);
                         response.setStatus(HttpServletResponse.SC_OK);
                     } catch (DAOException daoException) {
                         daoException.printStackTrace();
                         response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                     }
                 } else {
+                    // Aucune donnée dans le corps de la requête
                     response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 }
             } catch (IOException e) {
@@ -152,16 +168,18 @@ public class LieuServlet extends HttpServlet {
                 response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             }
         } catch (NumberFormatException e) {
+            // Erreur lors de la conversion de l'ID en entier
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         } catch (Exception e) {
+            // Autre exception non prévue
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
 
+        // Vider le tampon de réponse
         response.getWriter().flush();
     }
-
 
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
