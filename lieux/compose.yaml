@@ -8,18 +8,20 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 services:
-  api_lieux:
-    image: tomcat:latest
-    build:
-      context: .
+  api_lieu:
+    image: tomcat:10.1.19
+    container_name: api_lieu
     ports:
-      - 8010:8010
+      - 8087:8087
     volumes:
-      - /home/oce/GitHub/gitM1/lieux/build/target/lieux-api-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/lieux.war
+      - ./Lieux.war:/usr/local/tomcat/webapps/Lieux.war
+    restart: always
     networks:
       - mynetwork
     depends_on:
       - mariadb
+    command: ["sh", "-c", "sleep 15 && catalina.sh run"]
+
   mariadb:
     container_name: mariadb
     image: mariadb:latest

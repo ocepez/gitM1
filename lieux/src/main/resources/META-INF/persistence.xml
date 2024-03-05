@@ -4,9 +4,9 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.projetsi.lieux.entity.Lieu</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://obiwan.univ-brest.fr:3306/e22200380_db2"/>
-            <property name="javax.persistence.jdbc.user" value="e22200380sql"/>
-            <property name="javax.persistence.jdbc.password" value="Y?bdtjhr"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://mariadb:3306/e21901204_db2"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
             <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
             <property name="hibernate.show_sql" value="true" />
         </properties>
