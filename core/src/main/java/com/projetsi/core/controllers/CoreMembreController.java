@@ -1,7 +1,7 @@
 package com.projetsi.core.controllers;
 
-import com.projetsi.core.services.CoreCommentaireService;
 import com.projetsi.core.entities.Commentaire;
+import com.projetsi.core.services.CoreCommentaireService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +14,8 @@ import java.util.List;
  * @author Oceane P.
  */
 @RestController
-@RequestMapping("/core/commentaires")
-public class CoreCommentaireController {
+@RequestMapping("/core/membres")
+public class CoreMembreController {
 
     private final CoreCommentaireService coreCommentaireService;
 
@@ -24,7 +24,7 @@ public class CoreCommentaireController {
      *
      * @param coreCommentaireService Le service CoreCommentaireService utilisé.
      */
-    public CoreCommentaireController(CoreCommentaireService coreCommentaireService) {
+    public CoreMembreController(CoreCommentaireService coreCommentaireService) {
         this.coreCommentaireService = coreCommentaireService;
     }
 

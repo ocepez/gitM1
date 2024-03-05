@@ -1,7 +1,6 @@
 package com.projetsi.core.services;
 
 import com.projetsi.core.entities.Commentaire;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,9 +13,9 @@ import java.util.List;
  * @author Oceane P.
  */
 @Service
-public class CoreCommentaireService {
+public class CoreMembreService {
 
-    private final String COMMENTAIRES_API_URL = "http://localhost:8000";
+    private final String COMMENTAIRES_API_URL = "http://localhost:8030";
 
     private final RestTemplate restTemplate;
 
@@ -25,7 +24,7 @@ public class CoreCommentaireService {
      *
      * @param restTemplate Le RestTemplate utilisé pour les appels HTTP.
      */
-    public CoreCommentaireService(RestTemplate restTemplate) {
+    public CoreMembreService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
@@ -54,7 +53,7 @@ public class CoreCommentaireService {
     /**
      * Crée un nouveau Commentaire.
      *
-     * @param Commentaire Le nouveau Commentaire à créer.
+     * @param commentaire Le nouveau Commentaire à créer.
      * @return Le Commentaire créé.
      */
     public void createCommentaire(Commentaire commentaire) {

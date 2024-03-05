@@ -35,18 +35,7 @@ public class CoreEvenementController {
      */
     @GetMapping
     public List<Evenement> getAllevenements() {
-        return coreEvenementService.getAllevenements();
-    }
-
-    /**
-     * Obtient un Evenement par son identifiant.
-     *
-     * @param id L'identifiant du Evenement.
-     * @return Le Evenement correspondant à l'identifiant.
-     */
-    @GetMapping("/{id}")
-    public Evenement getEvenement(@PathVariable int id) {
-        return coreEvenementService.getEvenementById(id);
+        return coreEvenementService.getAllEvenement();
     }
 
     /**
@@ -61,6 +50,18 @@ public class CoreEvenementController {
     }
 
     /**
+     * Obtient un Evenement par son identifiant.
+     *
+     * @param id L'identifiant du Evenement.
+     * @return Le Evenement correspondant à l'identifiant.
+     */
+    @GetMapping("/{id}")
+    public Evenement getEvenement(@PathVariable int id) {
+        return coreEvenementService.getEvenementById(id);
+    }
+
+
+    /**
      * Met à jour un Evenement existant.
      *
      * @param id L'identifiant du Evenement à mettre à jour.
@@ -68,17 +69,8 @@ public class CoreEvenementController {
      * @return Le Evenement mis à jour.
      */
     @PutMapping("/{id}")
-    public Evenement updateEvenement(@PathVariable int id, @RequestBody Evenement Evenement) throws Exception {
-        Evenement EvenementExist = coreEvenementService.getEvenementById(id);
-        if (EvenementExist != null) {
-            EvenementExist.setNom(Evenement.getNom());
-            EvenementExist.setAdresse(Evenement.getAdresse());
-            EvenementExist.setCapacite(Evenement.getCapacite());
-
-            return coreEvenementService.updateEvenement(id, EvenementExist);
-        } else {
-            throw  new Exception("Evenement non trouvé avec l'ID : " + id);
-        }
+    public Evenement updateEvenement(@PathVariable int id, @RequestBody Evenement Evenement) {
+            return coreEvenementService.updateEvenement(id, Evenement);
     }
 
     /**
@@ -95,5 +87,58 @@ public class CoreEvenementController {
         } catch (Exception e) {
             return new ResponseEntity<>("Erreur lors de la suppression du Evenement d'identifiant : " + id, HttpStatus.NOT_FOUND);
         }
+    }
+
+    /**
+     * Obtient un Evenement par son identifiant.
+     *
+     * @param id L'identifiant du Evenement.
+     * @return Le Evenement correspondant à l'identifiant.
+     */
+    @GetMapping("/{id}/membres")
+    public Evenement getListeByEvenement(@PathVariable int id) {
+        return coreEvenementService.getListMembreByEvenement(id);
+    }
+
+    /**
+     * Inscrit un membre à un événement
+     * @param id
+     * @return
+     */
+    @PostMapping("/inscriptions")
+    public Evenement postInscription(@RequestBody int id) {
+        return coreEvenementService.postInscription(id);
+    }
+
+    /**
+     * Récupère la liste d'inscription d'un membre
+     * @param id
+     * @return
+     */
+    @GetMapping("/inscriptions/membre/{id}")
+    public Evenement getInscriptionByEvenement(@RequestBody int id) {
+        return coreEvenementService.getListInscriptionsByMembre(id);
+    }
+
+
+    /**
+     * Récupère la liste d'inscription à un événement
+     * @param id
+     * @return
+     */
+    @PostMapping("/inscriptions/evenement/{id}")
+    public Evenement getInscriptionByMembre(@RequestBody int id) {
+        return coreEvenementService.getListInscriptionsByEvenement(id);
+    }
+
+    /**
+     * Supprime une inscription pour un membre à un evenement
+     * @param id_membre
+     * @param  id_evenement
+     * @return
+     */
+    @PostMapping("/inscriptions/{id_membre}/{id_evenement}")
+    public Evenement getInscriptionByMembre(@RequestParam int id_membre, @RequestParam int id_evenement ) {
+        return coreEvenementService.getEvenementById(id_evenement);
     }
 }

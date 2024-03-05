@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class CoreLieuService {
 
-    private final String LIEUX_API_URL = "http://localhost:8000";
+    private final String LIEUX_API_URL = "http://localhost:8020";
 
     private final RestTemplate restTemplate;
 

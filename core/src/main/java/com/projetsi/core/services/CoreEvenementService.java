@@ -1,6 +1,6 @@
 package com.projetsi.core.services;
 
-import com.projetsi.core.entities.Lieu;
+import com.projetsi.core.entities.Evenement;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,79 +15,141 @@ import java.util.List;
 @Service
 public class CoreEvenementService {
 
-    private final String LIEUX_API_URL = "http://localhost:8000";
+    private final String EVENEMENT_API_URL = "http://localhost:8010";
 
     private final RestTemplate restTemplate;
 
     /**
-     * Constructeur du service CoreLieu.
+     * Constructeur du service CoreEvenement.
      *
      * @param restTemplate Le RestTemplate utilisé pour les appels HTTP.
      */
-    public CoreLieuService(RestTemplate restTemplate) {
+    public CoreEvenementService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     /**
-     * Récupère la liste de tous les lieux depuis l'API Lieux.
+     * Récupère la liste de tous les Evenement depuis l'API Evenement.
      *
-     * @return La liste de tous les lieux obtenue depuis l'API Lieux.
+     * @return La liste de tous les Evenement obtenue depuis l'API Evenement.
      */
-    public List<Lieu> getAllLieux() {
-        String url = LIEUX_API_URL + "/lieux";
-        Lieu[] lieux = restTemplate.getForObject(url, Lieu[].class);
-        return Arrays.asList(lieux);
+    public List<Evenement> getAllEvenement() {
+        String url = EVENEMENT_API_URL + "/evenements";
+        Evenement[] Evenement = restTemplate.getForObject(url, Evenement[].class);
+        return Arrays.asList(Evenement);
     }
 
     /**
-     * Récupère un lieu par son ID.
+     * Crée un nouveau Evenement.
      *
-     * @param id L'identidfiant du lieu.
-     * @return Le lieu correspondant à l'identifiant.
+     * @param Evenement Le nouveau Evenement à créer.
+     * @return Le Evenement créé.
      */
-    public Lieu getLieuById(int id) {
-        String url = LIEUX_API_URL + "/lieux/" + id;
-        Lieu lieu = restTemplate.getForObject(url, Lieu.class);
-        return lieu;
+    public Evenement createEvenement(Evenement Evenement) {
+        String url = EVENEMENT_API_URL + "/evenements";
+        return restTemplate.postForObject(url, Evenement, Evenement.class);
     }
 
     /**
-     * Crée un nouveau lieu.
+     * Récupère un Evenement par son ID.
      *
-     * @param lieu Le nouveau lieu à créer.
-     * @return Le lieu créé.
+     * @param id L'identidfiant du Evenement.
+     * @return Le Evenement correspondant à l'identifiant.
      */
-    public Lieu createLieu(Lieu lieu) {
-        String url = LIEUX_API_URL + "/lieux";
-        return restTemplate.postForObject(url, lieu, Lieu.class);
+    public Evenement getEvenementById(int id) {
+        String url = EVENEMENT_API_URL + "/evenements/" + id;
+        Evenement Evenement = restTemplate.getForObject(url, Evenement.class);
+        return Evenement;
+    }
+
+
+
+    /**
+     * Met à jour un Evenement existant.
+     *
+     * @param id L'identifiant du Evenement à modifier.
+     * @param Evenement Les nouvelles données du Evenement.
+     * @return Le Evenement mis à jour.
+     */
+    public Evenement updateEvenement(int id, Evenement Evenement) {
+        String url = EVENEMENT_API_URL + "/evenements/" + id;
+        return restTemplate.postForObject(url, Evenement, Evenement.class);
     }
 
     /**
-     * Met à jour un lieu existant.
+     * Suprimme un Evenement existant.
      *
-     * @param id L'identifiant du lieu à modifier.
-     * @param lieu Les nouvelles données du lieu.
-     * @return Le lieu mis à jour.
-     */
-    public Lieu updateLieu(int id, Lieu lieu) {
-        String url = LIEUX_API_URL + "/lieux/" + id;
-        return restTemplate.postForObject(url, lieu, Lieu.class);
-    }
-
-    /**
-     * Suprimme un lieu existant.
-     *
-     * @param id L'identifiant du lieu à supprimer.
+     * @param id L'identifiant du Evenement à supprimer.
      * @throws Exception En cas d'erreur lors de la suppression.
      */
-    public void deleteLieu(int id) throws Exception {
-        String url = LIEUX_API_URL + "/lieux/" + id;
+    public void deleteEvenement(int id) throws Exception {
+        String url = EVENEMENT_API_URL + "/evenements/" + id;
 
         try {
             restTemplate.delete(url);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new Exception("Erreur lors de la suppression du lieu d'identifiant : " + id, e);
+            throw new Exception("Erreur lors de la suppression du Evenement d'identifiant : " + id, e);
         }
+    }
+    /**
+     * Récupère un Evenement par son ID.
+     *
+     * @param id L'identidfiant du Evenement.
+     * @return Le Evenement correspondant à l'identifiant.
+     */
+    public Evenement getListMembreByEvenement(int id) {
+        String url = EVENEMENT_API_URL + "/evenements/" + id;
+        Evenement evenement = restTemplate.getForObject(url, Evenement.class);
+        return evenement;
+    }
+
+    /**
+     * Inscription d'un membre à un événement
+     *
+     * @param id L'identidfiant du Evenement.
+     * @return Le Evenement correspondant à l'identifiant.
+     */
+    public Evenement postInscription(int id) {
+        String url = EVENEMENT_API_URL + "/evenements/" + id;
+        Evenement evenement = restTemplate.getForObject(url, Evenement.class);
+        return evenement;
+    }
+
+    /**
+     * Récupère la liste des inscriptions d'un membre
+     *
+     * @param id L'identidfiant du Evenement.
+     * @return Le Evenement correspondant à l'identifiant.
+     */
+    public Evenement getListInscriptionsByMembre(int id) {
+        String url = EVENEMENT_API_URL + "/evenements/" + id;
+        Evenement evenement = restTemplate.getForObject(url, Evenement.class);
+        return evenement;
+    }
+
+    /**
+     * Récupère la liste des événements d'un membre
+     *
+     * @param id L'identidfiant du Evenement.
+     * @return Le Evenement correspondant à l'identifiant.
+     */
+    public Evenement getListInscriptionsByEvenement(int id) {
+        String url = EVENEMENT_API_URL + "/evenements/" + id;
+        Evenement evenement = restTemplate.getForObject(url, Evenement.class);
+        return evenement;
+    }
+
+    /**
+     * Récupère la liste des événements d'un membre
+     *
+     * @param id_evenement L'identidfiant de l'evenement.
+     * @param  id_membre L'identifiant du membre.
+     * @return Le Evenement correspondant à l'identifiant.
+     */
+    public Evenement deleteInscription(int id_membre, int id_evenement) {
+        String url = EVENEMENT_API_URL + "/evenements/" + id_membre+"/"+ id_evenement;
+        Evenement evenement = restTemplate.getForObject(url, Evenement.class);
+        return evenement;
     }
 }

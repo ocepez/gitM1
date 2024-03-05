@@ -14,7 +14,7 @@ import java.util.List;
  * @author Maxime A.
  */
 @RestController
-@RequestMapping("/cors/lieux")
+@RequestMapping("/core/lieux")
 public class CoreLieuController {
 
     private final CoreLieuService coreLieuService;
