@@ -1,11 +1,25 @@
+
 version: '3.8'
 services:
-  mariadb:
-    image: mariadb:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: monMotDePasseSuperSecret
-    volumes:
-     # - /home/oce/Documents/UBO/M1 TIILA/S8/Architecture client-serveur orientées web et donnees/Projet/git/TPSPRINGLEVY/dbb/var/lib/mysql
-      - /home/oce/GitHub/gitM1/evenements/dbb
+  api_evenement:
+    container_name: api_evenement
+    build: .
+    restart: no
     ports:
-      - "3309:3309"
+      - 8040:8040
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/e21901204_db2
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - mariadb
+
+  mariadb:
+    container_name: mariadb
+    image: mariadb:latest
+    restart: no
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: e21901204_db2
+    ports:
+      - 3306:3306

@@ -35,8 +35,7 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
-
-
+	runtimeOnly 'mysql:mysql-connector-java'  //<-- ADD ME
 }
 
 
