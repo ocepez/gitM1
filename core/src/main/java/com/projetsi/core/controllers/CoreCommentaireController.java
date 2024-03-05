@@ -45,15 +45,12 @@ public class CoreCommentaireController {
      * @param id L'identifiant du Commentaire à mettre à jour.
      * @return Le Commentaire mis à jour.
      */
-    @GetMapping("/Membre/{id}")
+    @GetMapping("/Commentaire/{id}")
     public Commentaire getCommentaireByMembre(@PathVariable int id) throws Exception {
         Commentaire CommentaireExist = coreCommentaireService.getCommentaireById(id);
         if (CommentaireExist != null) {
-            CommentaireExist.setContenu_commentaire(Commentair););
-            CommentaireExist.setAdresse(Commentaire.getAdresse());
-            CommentaireExist.setCapacite(Commentaire.getCapacite());
 
-            return coreCommentaireService.updateCommentaire(id, CommentaireExist);
+            return coreCommentaireService.getCommentaireById(id);
         } else {
             throw  new Exception("Commentaire non trouvé avec l'ID : " + id);
         }
