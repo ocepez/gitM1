@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -50,15 +51,14 @@ public class EvenementInscriptionController {
 
     @GetMapping(value="/membre/{id}")
     @Description("Recupère la liste des inscriptions d'un membre")
-    public List<Evenement> getListInscriptionAMembre(@PathVariable int id){
+    public Set<Evenement> getListInscriptionAMembre(@PathVariable int id){
 
         return evenementInscriptionService.getListInscriptionAMembre(id);
     }
 
     @GetMapping(value="/evenement/{id}")
     @Description("Recupère la liste des inscriptions à un événement")
-    public List<Membre> getListInscriptionAEvenement(@PathVariable int id){
-
+    public Set<Membre> getListInscriptionAEvenement(@PathVariable int id){
         return evenementInscriptionService.getListInscriptionAEvenement(id);
     }
 
