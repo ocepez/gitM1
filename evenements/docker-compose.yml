@@ -23,3 +23,4 @@ services:
       MYSQL_DATABASE: e21901204_db2
     ports:
       - "3306:3306"
+
