@@ -35,25 +35,10 @@ public class EvenementInscriptionServiceImpl implements EvenementInscriptionServ
         this.membreRepository = membreRepository;
     }
 
-    private Membre renvoieId(String email) {
-
-        List<Membre> membreList = this.membreRepository.findAll();
-        Iterator<Membre> membre = membreList.iterator();
-
-        while (membre.hasNext()) {
-            Membre membre1 = membre.next();
-            if (membre1.getEmail_membre().equals(email)) {
-                return membre1;
-            }
-        }
-
-        return null;
-    }
 
     @Override
     public ResponseEntity<String> postInscriptionAEvenement(RequestBodyInscriptionEvenement inscriptionEvenement) {
 
-        //  Membre membre = renvoieId(inscriptionEvenement.);
         Evenement evenement = this.evenementRepository.getById(inscriptionEvenement.getId_evenement());
         Membre membre = this.membreRepository.getById(inscriptionEvenement.getId_membre());
         if (membre == null) {

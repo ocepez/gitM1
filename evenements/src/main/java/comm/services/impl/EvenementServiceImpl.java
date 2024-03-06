@@ -159,10 +159,10 @@ public class EvenementServiceImpl implements EvenementService {
         if(evenement.getNb_max_evenement() > lieu.getCapacite_lieu()){
             return new ResponseEntity<>("La taille demandé est supérieure à la capacité du lieu.", HttpStatus.CONFLICT);
         }
-        if(evenement.getImage_evenement() != null){
+        if(evenement.getImage_evenement() != null && !"".equals(evenement.getDesc_evenement())){
             evenement1.setImage_evenement(evenement.getImage_evenement());
         }
-        if(evenement.getDesc_evenement() != null){
+        if(evenement.getDesc_evenement() != null && !"".equals(evenement.getDesc_evenement())){
             evenement1.setDesc_evenement(evenement.getDesc_evenement());
         }
         if(evenement.getDate_evenement() != null){
@@ -171,7 +171,7 @@ public class EvenementServiceImpl implements EvenementService {
         if(evenement.getDuree_evenement() > 0){
             evenement1.setDuree_evenement(evenement.getDuree_evenement());
         }
-        if(evenement.getNom_evenement() != null){
+        if(evenement.getNom_evenement() != null && !"".equals(evenement.getDesc_evenement())){
             evenement1.setNom_evenement(evenement.getNom_evenement());
         }
         //On augmente si la taille proposée est supérieur au nombre d'inscrits

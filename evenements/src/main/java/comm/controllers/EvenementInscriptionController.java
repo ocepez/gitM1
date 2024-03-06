@@ -20,6 +20,7 @@ import java.util.Set;
  */
 @RestController
 @RequestMapping("/evenements/inscription")
+@Description("Gestion des inscriptions")
 public class EvenementInscriptionController {
 
 
@@ -52,7 +53,6 @@ public class EvenementInscriptionController {
     @GetMapping(value="/membre/{id}")
     @Description("Recupère la liste des inscriptions d'un membre")
     public Set<Evenement> getListInscriptionAMembre(@PathVariable int id){
-
         return evenementInscriptionService.getListInscriptionAMembre(id);
     }
 

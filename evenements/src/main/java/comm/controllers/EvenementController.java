@@ -5,6 +5,7 @@ import comm.entities.Evenement;
 import comm.entities.Membre;
 import comm.services.EvenementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Description;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ import java.util.Set;
  */
 @RestController
 @RequestMapping("/evenements")
+@Description("Gestion des événements")
 public class EvenementController {
 
     @Autowired
