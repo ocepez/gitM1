@@ -1,0 +1,85 @@
+version: '3.8'
+services:
+  api_evenements:
+    container_name: api_evenements
+    build: ./evenements
+    ports:
+      - "8040:8040"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/e21901204_db2
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - mariadb
+    networks:
+      - backend1
+  api_commentaires:
+    image: tomcat:latest
+    container_name: api_commentaires
+    depends_on:
+      - mongodb
+    build:
+      context: ./commentaires
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" #l'url est localhost:8080/commentaires
+    volumes:
+      - /home/oce/GitHub/gitM1/commentaires/build/libs/commentaires-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/commentaires.war
+    networks:
+      - backend1
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017/commentaires
+  api_lieux:
+    container_name: api_lieux
+    build: ./lieux
+    ports:
+      - "8010:8010"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/e21901204_db2
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - mariadb
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - backend1
+  mariadb:
+    container_name: mariadb
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: e21901204_db2
+    ports:
+      - 3306:3306
+    networks:
+      - backend1
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8180:80
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+      version: '3'
+    volumes:
+      - type: bind
+        source: ./dbdata
+        target: /var/lib/mysql
+volumes:
+  dbdata:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/oce/GitHub/gitM1/dbdata
+networks:
+  backend1:
+    driver: bridge
+    name: backend1
+    attachable: true
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="https://jakarta.ee/xml/ns/persistence"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="default">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.ubo.entity.Commentaire</class>
+        <class>com.ubo.entity.Evenement</class>
+        <class>com.ubo.entity.Lieu</class>
+        <class>com.ubo.entity.Membre</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url"
+                      value="mongodb://mongodb:27017/commentaires"/>
+            <property name="javax.persistence.jdbc.user"
+                      value="root"/>
+            <property name="javax.persistence.jdbc.password"
+                      value="root"/>
+            <property name="javax.persistence.jdbc.driver"
+                      value="org.mariadb.jdbc.Driver"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.connection.provider_class"
+                      value="org.hibernate.connection.C3P0ConnectionProvider"/>
+            <property name="hibernate.c3p0.min_size" value="5"/>
+            <property name="hibernate.c3p0.max_size" value="10"/>
+            <property name="hibernate.c3p0.timeout" value="500"/>
+            <property name="hibernate.c3p0.max_statements" value="50"/>
+            <property name="hibernate.c3p0.idle_test_period" value="300"/>
+        </properties>
+    </persistence-unit>
+</persistence>
