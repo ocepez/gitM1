@@ -1,0 +1,63 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'com.ubo'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.9.2'
+}
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+
+    // Annotations
+    implementation 'org.projectlombok:lombok:1.18.22'
+
+    implementation('jakarta.servlet:jakarta.servlet-api:5.0.0')
+    implementation('org.glassfish.jersey.containers:jersey-container-servlet:3.0.4')
+    implementation('org.glassfish.jersey.media:jersey-media-json-jackson:3.0.4')
+    implementation('org.glassfish.jersey.inject:jersey-cdi2-se:3.0.4')
+    implementation('org.hibernate:hibernate-core:6.0.2.Final')
+    implementation('org.glassfish.jaxb:jaxb-runtime:3.0.2')
+    implementation 'io.swagger:swagger-annotations:1.6.2'
+    implementation('org.hibernate.validator:hibernate-validator:7.0.5.Final')
+    implementation('org.jboss.weld.se:weld-se-core:4.0.3.Final')
+    implementation('org.springdoc:springdoc-openapi-ui:1.6.5')
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testImplementation 'org.mockito:mockito-core:4.4.0'
+    testImplementation 'io.wcm:io.wcm.testing.aem-mock.junit5:4.1.0'
+    implementation 'org.mongodb:mongodb-driver-sync:4.8.2'
+    implementation 'org.apache.taglibs:taglibs-standard-jstlel:1.2.5'
+    implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
+    implementation 'org.hibernate:hibernate-core:5.4.21.Final'
+    implementation 'org.hibernate.orm:hibernate-c3p0:6.1.7.Final'
+    implementation 'com.mchange:c3p0:0.9.5.5'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.1.0'
+    implementation 'io.swagger:swagger-jersey2-jaxrs:1.6.13'
+//Thanks for using https://jar-download.com
+
+
+}
+
+war {
+
+    webInf { from 'WebContent/WEB-INF' }
+}
+
+test {
+    useJUnitPlatform()
+}

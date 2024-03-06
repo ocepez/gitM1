@@ -6,7 +6,7 @@ services:
     build: .
     restart: no
     ports:
-      - 8040:8040
+      - "8040:8040"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/e21901204_db2
       SPRING_DATASOURCE_USERNAME: root
@@ -22,4 +22,4 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: e21901204_db2
     ports:
-      - 3306:3306
+      - "3306:3306"
