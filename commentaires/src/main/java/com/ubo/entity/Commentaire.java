@@ -30,4 +30,35 @@ public class Commentaire {
     @BsonProperty("id_membre")
     private int id_membre;
 
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
+    public String getContenu_commentaire() {
+        return contenu_commentaire;
+    }
+
+    public void setContenu_commentaire(String contenu_commentaire) {
+        this.contenu_commentaire = contenu_commentaire;
+    }
+
+    public int getId_evenement() {
+        return id_evenement;
+    }
+
+    public void setId_evenement(int id_evenement) {
+        this.id_evenement = id_evenement;
+    }
+
+    public int getId_membre() {
+        return id_membre;
+    }
+
+    public void setId_membre(int id_membre) {
+        this.id_membre = id_membre;
+    }
 }

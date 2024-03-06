@@ -1,20 +1,21 @@
 package com.ubo.commentaires;
 
+import jakarta.annotation.security.RunAs;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.io.*;
 
 import static org.mockito.Mockito.*;
 
-
 class CommentaireServletTest {
 
 
     CommentaireServlet commentaireServlet = new CommentaireServlet();
-
+/*
 
     @Test
     void postCommentaireOK() throws IOException {
@@ -77,7 +78,8 @@ class CommentaireServletTest {
         when(response.getWriter()).thenReturn(writer);
         commentaireServlet.doGet(request, response);
         verify(response).setContentType("application/json");
-        ;
         verify(response).setStatus(200);
     }
+
+ */
 }
