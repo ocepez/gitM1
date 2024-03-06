@@ -8,3 +8,4 @@ services:
       - /home/oce/Documents/UBO/M1 TIILA/S8/Architecture client-serveur orientées web et donnees/Projet/git/TPSPRINGLEVY/dbb/var/lib/mysql
     ports:
       - "3306:3306"
+
