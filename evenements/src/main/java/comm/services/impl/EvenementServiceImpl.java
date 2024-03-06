@@ -32,11 +32,23 @@ public class EvenementServiceImpl implements EvenementService {
     private final LieuRepository lieuRepository;
     private  final MembreRepository membreRepository;
 
+    /**
+     * Constructeur de EvenementServiceImpl
+     * @param evenementRepository
+     * @param lieuRepository
+     * @param membreRepository
+     */
     public EvenementServiceImpl(EvenementRepository evenementRepository, LieuRepository lieuRepository, MembreRepository membreRepository) {
         this.evenementRepository = evenementRepository;
         this.lieuRepository = lieuRepository;
         this.membreRepository = membreRepository;
     }
+
+    /**
+     * Convertit d'un objet Dto à Entité
+     * @param evenementsDto
+     * @return evenement
+     */
     private Evenement dtoToEntity(EvenementsDto evenementsDto){
         Evenement evenement = new Evenement();
         evenement.setId_evenement(evenementsDto.getId_evenement());
@@ -49,6 +61,12 @@ public class EvenementServiceImpl implements EvenementService {
         evenement.setNb_max_evenement(evenementsDto.getNb_max_evenement());
         return evenement;
     }
+
+    /**
+     * Convertit d'un objet Entité à DTO
+     * @param evenement
+     * @return evenementsDto
+     */
     private EvenementsDto entityToDto(Evenement evenement){
         EvenementsDto evenementsDto = new EvenementsDto();
         evenementsDto.setId_evenement(evenement.getId_evenement());
@@ -62,7 +80,11 @@ public class EvenementServiceImpl implements EvenementService {
         return evenementsDto;
     }
 
-
+    /**
+     * Vérifie que des événements ne se chevauchent pas
+     * @param evenement1
+     * @return
+     */
     private boolean exist(Evenement evenement1){
        List<Evenement> evenements1 = evenementRepository.findAll();
        for(Evenement evenement : evenements1){
@@ -100,7 +122,21 @@ public class EvenementServiceImpl implements EvenementService {
         return false;
     }
 
+    /**
+     * Verifie que la date insérée n'est pas avant la date d'aujourd'hui
+     * @param dateDebut
+     * @return
+     */
+    public static boolean verifierDateDebut(Date dateDebut) {
+        Date dateActuelle = new Date();
+        return !dateDebut.before(dateActuelle);
+    }
 
+
+    /**
+     * Récupère toute la liste des événements
+     * @return Une liste des evenements DTO
+     */
     @Override
     public List<EvenementsDto> getAllEvenements() {
         List<EvenementsDto> evenements = new ArrayList<>();
@@ -111,6 +147,11 @@ public class EvenementServiceImpl implements EvenementService {
        return evenements;
     }
 
+    /**
+     * Insère un nouvel evenement
+     * @param evenement l'événement à insérer
+     * @return
+     */
     @Override
     public ResponseEntity<String> setOneEvenement(EvenementsDto evenement) {
         Evenement evenement1 = dtoToEntity(evenement);
@@ -123,10 +164,18 @@ public class EvenementServiceImpl implements EvenementService {
         if(evenement1.getNb_max_evenement() > this.lieuRepository.getById(evenement1.getId_lieu()).getCapacite_lieu()){
             return new ResponseEntity<String>("L'evenement ne peut pas donner un nombre de places plus importantes que la capacité.", HttpStatus.CONFLICT);
         }
+        if(!verifierDateDebut(evenement1.getDate_evenement())){
+            return new ResponseEntity<String>("La date de l'evenement n'est pas avant la date du jour", HttpStatus.CONFLICT);
+        }
         evenementRepository.save(evenement1);
         return new ResponseEntity<String>("L'evenement a été enregistré", HttpStatus.CREATED);
     }
 
+    /**
+     * Récupère un événement
+     * @param id l'identifiant de l'événement à récupérer
+     * @return
+     */
     @Override
     public EvenementsDto getOneEvenementById(int id) {
         try {
@@ -143,6 +192,12 @@ public class EvenementServiceImpl implements EvenementService {
 
     }
 
+    /**
+     * Met à jour un événement
+     * @param id l'identifiant de l'événement à modifier.
+     * @param evenement les informations à remplacer.
+     * @return
+     */
     @Override
     public ResponseEntity<String> setOneEvenementById(int id, EvenementsDto evenement) {
         Evenement evenement1= evenementRepository.getById(id);
@@ -182,6 +237,12 @@ public class EvenementServiceImpl implements EvenementService {
         return new ResponseEntity<String>("Mise à Jour Evenement", HttpStatus.OK);
     }
 
+
+    /**
+     * Supprime un événement
+     * @param id
+     * @return
+     */
     @Override
     public ResponseEntity<String> deleteOneEvenementById(int id) {
         try {
@@ -195,6 +256,11 @@ public class EvenementServiceImpl implements EvenementService {
         return new ResponseEntity<>("L'événement à été supprimé.", HttpStatus.OK);
     }
 
+    /**
+     * Recupere une liste de membres par l'événement
+     * @param id l'identifiant de l'événement.
+     * @return
+     */
     @Override
     public Set<Membre> getListeMembreByIdEvenement(int id) {
         try {
