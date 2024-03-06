@@ -1,7 +1,7 @@
 package com.projetsi.core.controllers;
 
-import com.projetsi.core.entities.Commentaire;
-import com.projetsi.core.services.CoreCommentaireService;
+import com.projetsi.core.entities.Membre;
+import com.projetsi.core.services.CoreMembreService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Contrôleur principal de l'API Core pour la gestion des Commentaires.
+ * Contrôleur principal de l'API Core pour la gestion des Membres.
  *
  * @author Oceane P.
  */
@@ -17,81 +17,98 @@ import java.util.List;
 @RequestMapping("/core/membres")
 public class CoreMembreController {
 
-    private final CoreCommentaireService coreCommentaireService;
+    private final CoreMembreService coreMembreService;
 
     /**
-     * Constructeur du contrôleur CoreCommentaireController.
+     * Constructeur du contrôleur CoreMembreController.
      *
-     * @param coreCommentaireService Le service CoreCommentaireService utilisé.
+     * @param coreMembreService Le service CoreMembreService utilisé.
      */
-    public CoreMembreController(CoreCommentaireService coreCommentaireService) {
-        this.coreCommentaireService = coreCommentaireService;
+    public CoreMembreController(CoreMembreService coreMembreService) {
+        this.coreMembreService = coreMembreService;
     }
 
     /**
-     * Crée un nouveau commentaire.
+     * Crée un nouveau Membre.
      *
-     * @param Commentaire Le commentaire à créer.
-     * @return Le Commentaire créé.
+     * @param Membre Le Membre à créer.
+     * @return Le Membre créé.
      */
     @PostMapping
-    public ResponseEntity<String> createCommentaire(@RequestBody Commentaire Commentaire) {
+    public ResponseEntity<String> connexion(@RequestBody Membre Membre) {
 
         try {
-            coreCommentaireService.createCommentaire(Commentaire);
-            return new ResponseEntity<>("Commentaire crée avec succès", HttpStatus.OK);
+            coreMembreService.createMembre(Membre);
+            return new ResponseEntity<>("Membre crée avec succès", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Erreur lors de la création du commentaire  ", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Erreur lors de la création du Membre  ", HttpStatus.NOT_FOUND);
+        }
+
+    }
+    /**
+     * Crée un nouveau Membre.
+     *
+     * @param Membre Le Membre à créer.
+     * @return Le Membre créé.
+     */
+    @PostMapping
+    public ResponseEntity<String> createMembre(@RequestBody Membre Membre) {
+
+        try {
+            coreMembreService.createMembre(Membre);
+            return new ResponseEntity<>("Membre crée avec succès", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Erreur lors de la création du Membre  ", HttpStatus.NOT_FOUND);
         }
 
     }
 
     /**
-     * Récupère la liste d'un commentaire d'un membre
+     * Récupère la liste d'un Membre d'un membre
      *
      * @param id L'identifiant du membre.
-     * @return Le Commentaire mis à jour.
+     * @return Le Membre mis à jour.
      */
     @GetMapping("/membre/{id}")
-    public List<Commentaire>  getCommentaireByMembre(@PathVariable int id) throws Exception {
-        List<Commentaire> CommentaireExist = coreCommentaireService.getAllCommentaireByEvenement(id);
-        if (CommentaireExist != null) {
+    public List<Membre>  getMembreById(@PathVariable int id) throws Exception {
+        List<Membre> MembreExist = coreMembreService.getMembreById(id);
+        if (MembreExist != null) {
 
-            return CommentaireExist;
+            return MembreExist;
         } else {
             throw  new Exception("La liste est indisponible avec l'id d'événement donné : " + id);
         }
     }
 
     /**
-     * Récupère la liste d'un commentaire d'un événement
+     * Récupère la liste d'un Membre d'un événement
      *
-     * @param id L'identifiant du Commentaire à mettre à jour.
-     * @return Le Commentaire mis à jour.
+     * @param id L'identifiant du Membre à mettre à jour.
+     * @return Le Membre mis à jour.
      */
     @GetMapping("/evenement/{id}")
-    public List<Commentaire>  getCommentaireByEvenement(@PathVariable int id) throws Exception {
-        List<Commentaire> CommentaireExist = coreCommentaireService.getAllCommentaireByMembre(id);
-        if (CommentaireExist != null) {
+    public List<Membre>  getMembreByEvenement(@PathVariable int id) throws Exception {
+        List<Membre> MembreExist = coreMembreService.getListEvenementsByMembre(id);
+        if (MembreExist != null) {
 
-            return CommentaireExist;
+            return MembreExist;
         } else {
             throw  new Exception("La liste est indisponible avec l'id donné : " + id);
         }
     }
     /**
-     * Supprime un commentaire.
+     * Supprime un Membre.
      *
-     * @param id L'identifiant du Commentaire à supprimer.
+     * @param id L'identifiant du Membre à supprimer.
      * @return Un message de retour sur l'opération de suppression.
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCommentaire(@PathVariable int id) {
+    public ResponseEntity<String> deleteMembre(@PathVariable int id) {
         try {
-            coreCommentaireService.deleteCommentaire(id);
-            return new ResponseEntity<>("Commentaire supprimé avec succès", HttpStatus.OK);
+            coreMembreService.deleteMembre(id);
+            return new ResponseEntity<>("Membre supprimé avec succès", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Erreur lors de la suppression du Commentaire d'identifiant : " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Erreur lors de la suppression du Membre d'identifiant : " + id, HttpStatus.NOT_FOUND);
         }
     }
 }
