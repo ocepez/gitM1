@@ -30,12 +30,22 @@ public class EvenementInscriptionServiceImpl implements EvenementInscriptionServ
     @Autowired
     private final MembreRepository membreRepository;
 
+    /**
+     * Constructeur de la classe EvenementInscriptionServiceImpl
+     * @param evenementRepository
+     * @param membreRepository
+     */
     public EvenementInscriptionServiceImpl(EvenementRepository evenementRepository, MembreRepository membreRepository) {
         this.evenementRepository = evenementRepository;
         this.membreRepository = membreRepository;
     }
 
 
+    /**
+     * Insère un événement
+     * @param inscriptionEvenement
+     * @return
+     */
     @Override
     public ResponseEntity<String> postInscriptionAEvenement(RequestBodyInscriptionEvenement inscriptionEvenement) {
 
@@ -66,6 +76,11 @@ public class EvenementInscriptionServiceImpl implements EvenementInscriptionServ
         return new ResponseEntity<String>("Le membre a été inscrit à l'événement", HttpStatus.OK);
     }
 
+    /**
+     * Récupère une liste d'inscription d'un membre
+     * @param id l'id du membre
+     * @return
+     */
     @Override
     public Set<Evenement> getListInscriptionAMembre(int id) {
 
@@ -85,6 +100,11 @@ public class EvenementInscriptionServiceImpl implements EvenementInscriptionServ
 
     }
 
+    /**
+     * Récupère la liste des inscriptions à un événement
+     * @param id l'id du membre
+     * @return Une liste de membres
+     */
     @Override
     public Set<Membre> getListInscriptionAEvenement(int id) {
         try {
@@ -102,6 +122,12 @@ public class EvenementInscriptionServiceImpl implements EvenementInscriptionServ
         }
     }
 
+    /**
+     * Supprime l'inscription d'un membre à un événement
+     * @param id_membre l'id du membre
+     * @param id_evenement l'id d'un événement
+     * @return
+     */
     @Override
     public ResponseEntity<String> deleteMembreAEvenement(int id_membre, int id_evenement) {
 

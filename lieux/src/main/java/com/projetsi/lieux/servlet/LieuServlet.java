@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author Maxime A.
  */
-@WebServlet(name = "lieux-servlet", value = "/lieux/*")
+@WebServlet(name = "lieuxServlet", value = "/lieux/*")
 public class LieuServlet extends HttpServlet {
 
     private LieuService lieuService;

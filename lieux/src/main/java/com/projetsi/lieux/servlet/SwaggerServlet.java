@@ -1,4 +1,4 @@
-package com.ubo.commentaires;
+package com.projetsi.lieux.servlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,13 +11,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 
-@WebServlet("/swagger")
+@WebServlet(name = "swagger", value = "/swagger")
 public class SwaggerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json");
-        InputStream inputStream = getServletContext().getResourceAsStream("/WEB-INF/swagger.json");
+        InputStream inputStream = getServletContext().getResourceAsStream("/WEB-INF/classes/swagger.json");
         OutputStream outputStream = response.getOutputStream();
         byte[] buffer = new byte[4096];
         int bytesRead;

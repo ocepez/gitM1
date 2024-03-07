@@ -237,7 +237,6 @@ public class EvenementServiceImpl implements EvenementService {
         return new ResponseEntity<String>("Mise à Jour Evenement", HttpStatus.OK);
     }
 
-
     /**
      * Supprime un événement
      * @param id

@@ -13,7 +13,7 @@ services:
       - mariadb
     networks:
       - backend1
-  api_commentaires_lieux:
+  api_commentaires:
     image: tomcat:latest
     container_name: api_commentaires
     depends_on:
@@ -22,9 +22,9 @@ services:
       context: ./commentaires
       dockerfile: Dockerfile
     ports:
-      - "8081:8080" #l'url est localhost:8080/commentaires
+      - "8080:8080" #l'url est localhost:8080/commentaires
     volumes:
-      - /home/oce/GitHub/gitM1/commentaires/build/libs/commentaires-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/commentaires.war
+      - ./commentaires/build/libs/commentaires-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/commentaires.war
     networks:
       - backend1
     environment:
@@ -32,20 +32,21 @@ services:
 
   api_lieux:
     image: tomcat:latest
+    build: ./lieux
     volumes:
-      - ./lieux.war:/usr/local/tomcat/webapps/lieux.war
+      - ./lieux/target/lieux-api-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/lieux.war
     restart: always
     container_name: api_lieux
-#    build: ./lieux
     ports:
-      - "8080:8080"
+      - "9090:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/e21901204_db2
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     depends_on:
       - mariadb
-
+    networks:
+      - backend1
 
   mongodb:
     container_name: mongodb
