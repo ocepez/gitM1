@@ -84,6 +84,8 @@ public class EvenementInscriptionServiceImpl implements EvenementInscriptionServ
      */
 
 
+
+
     @Override
     public ResponseEntity<String> postInscriptionAEvenement(RequestBodyInscriptionEvenement inscriptionEvenement) {
 
