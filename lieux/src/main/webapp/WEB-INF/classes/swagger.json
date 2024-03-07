@@ -1,8 +1,9 @@
 {
-  "openapi": "3.1.0",
+  "openapi": "3.0.3",
   "info": {
-    "title": "API Lieu",
-    "version": "1.0.0"
+    "title": "Lieux association",
+    "description": "Projet multi-api permettant un gestion simple des lieux \n\n## <u>Attributs personnalisés :</u>\n- **x-database :** Permet de lister les attributs qui seront appliqués aux champs du côté de la base de données.",
+    "version": "v1.0"
   },
   "servers": [
     {
