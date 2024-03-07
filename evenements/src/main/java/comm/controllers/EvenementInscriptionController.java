@@ -49,12 +49,22 @@ public class EvenementInscriptionController {
 
         return this.evenementInscriptionService.postInscriptionAEvenement(requestBodyInscriptionEvenement);
     }
-
+    /**
+     * Récupère la liste des inscriptions d'un membre
+     * @param id l'id du membre
+     * @return Une liste d'événements
+     */
     @GetMapping(value="/membre/{id}")
     @Description("Recupère la liste des inscriptions d'un membre")
     public Set<Evenement> getListInscriptionAMembre(@PathVariable int id){
         return evenementInscriptionService.getListInscriptionAMembre(id);
     }
+
+    /**
+     * Récupère la liste des inscriptions à un événement
+     * @param id l'id de l'événement
+     * @return Une liste de membres
+     */
 
     @GetMapping(value="/evenement/{id}")
     @Description("Recupère la liste des inscriptions à un événement")
@@ -62,6 +72,12 @@ public class EvenementInscriptionController {
         return evenementInscriptionService.getListInscriptionAEvenement(id);
     }
 
+    /**
+     * Supprime l'inscription d'un membre à un événement
+     * @param id_membre l'id du membre
+     * @param  id_evenement l'id de l'événement
+     * @return Une liste d'événements
+     */
   @DeleteMapping(value = "/{id_membre}/{id_evenement}")
   @Description("Recupère la liste des inscriptions à un événement")
   public ResponseEntity<String> deleteMembreAEvenement(@PathVariable int id_membre, @PathVariable int id_evenement) {

@@ -42,6 +42,42 @@ public class EvenementInscriptionServiceImpl implements EvenementInscriptionServ
 
 
     /**
+     * Convertit d'un objet Dto à Entité
+     * @param evenementsDto
+     * @return evenement
+     */
+    private Evenement dtoToEntity(EvenementsDto evenementsDto){
+        Evenement evenement = new Evenement();
+        evenement.setId_evenement(evenementsDto.getId_evenement());
+        evenement.setNom_evenement(evenementsDto.getNom_evenement());
+        evenement.setDate_evenement(evenementsDto.getDate_evenement());
+        evenement.setDuree_evenement(evenementsDto.getDuree_evenement());
+        evenement.setDesc_evenement(evenementsDto.getDesc_evenement());
+        evenement.setImage_evenement(evenementsDto.getImage_evenement());
+        evenement.setId_lieu(evenementsDto.getId_lieu());
+        evenement.setNb_max_evenement(evenementsDto.getNb_max_evenement());
+        return evenement;
+    }
+
+    /**
+     * Convertit d'un objet Entité à DTO
+     * @param evenement
+     * @return evenementsDto
+     */
+    private EvenementsDto entityToDto(Evenement evenement){
+        EvenementsDto evenementsDto = new EvenementsDto();
+        evenementsDto.setId_evenement(evenement.getId_evenement());
+        evenementsDto.setDate_evenement(evenement.getDate_evenement());
+        evenementsDto.setDesc_evenement(evenement.getDesc_evenement());
+        evenementsDto.setNom_evenement(evenement.getNom_evenement());
+        evenementsDto.setDuree_evenement(evenement.getDuree_evenement());
+        evenementsDto.setImage_evenement(evenement.getImage_evenement());
+        evenementsDto.setNb_max_evenement(evenement.getNb_max_evenement());
+        evenementsDto.setId_lieu(evenement.getId_lieu());
+        return evenementsDto;
+    }
+
+    /**
      * Insère un événement
      * @param inscriptionEvenement
      * @return
