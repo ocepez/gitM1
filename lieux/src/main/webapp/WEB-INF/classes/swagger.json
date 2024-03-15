@@ -1,0 +1,201 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Lieux association",
+    "description": "Projet multi-api permettant un gestion simple des lieux \n\n## <u>Attributs personnalisés :</u>\n- **x-database :** Permet de lister les attributs qui seront appliqués aux champs du côté de la base de données.",
+    "version": "v1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9090/lieux"
+    },
+    {
+      "url": "http://localhost:9090"
+    }
+  ],
+  "paths": {
+    "/lieux": {
+      "get": {
+        "summary": "Récupération de tous les lieux avec leurs adresses",
+        "responses": {
+          "200": {
+            "description": "Liste des lieux avec adresses récupérée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id_lieu": {
+                        "type": "integer"
+                      },
+                      "nom": {
+                        "type": "string"
+                      },
+                      "adresse": {
+                        "type": "string"
+                      },
+                      "capacite": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "nom",
+                      "adresse",
+                      "capacite"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Ajout d'un nouveau lieu avec adresse",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nom": {
+                    "type": "string"
+                  },
+                  "adresse": {
+                    "type": "string"
+                  },
+                  "capacite": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "nom",
+                  "adresse",
+                  "capacite"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Lieu créé avec succès"
+          }
+        }
+      }
+    },
+    "/lieux/{id_lieu}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id_lieu",
+          "required": true,
+          "description": "ID du lieu à récupérer/modifier/supprimer",
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Récupération des détails d'un lieu avec son adresse",
+        "responses": {
+          "200": {
+            "description": "Détails du lieu avec adresse récupérés avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "nom": {
+                      "type": "string"
+                    },
+                    "adresse": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "ville": {
+                          "type": "string"
+                        },
+                        "rue": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "ville",
+                        "rue"
+                      ]
+                    },
+                    "capacite": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "nom",
+                    "adresse",
+                    "capacite"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Modification des informations d'un lieu",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id_lieu": {
+                    "type": "integer"
+                  },
+                  "nom": {
+                    "type": "string"
+                  },
+                  "adresse": {
+                    "type": "string"
+                  },
+                  "capacite": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "nom",
+                  "adresse",
+                  "capacite"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Lieu modifié avec succès"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Suppression d'un lieu",
+        "responses": {
+          "204": {
+            "description": "Lieu supprimé avec succès"
+          }
+        }
+      }
+    }
+  }
+}

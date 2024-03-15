@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Evenements association",
+    "title": "Commentaires association",
     "description": "Projet multi-api permettant un gestion simple des événements d'une association et de ces membres.\n\n## <u>Attributs personnalisés :</u>\n- **x-database :** Permet de lister les attributs qui seront appliqués aux champs du côté de la base de données.",
     "version": "v1.0"
   },
