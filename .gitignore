@@ -1,4 +1,5 @@
 .idea
 dbdata
 commentaires-0.1.war
-
+commentaires/.gradle
+commentaires/gradle
