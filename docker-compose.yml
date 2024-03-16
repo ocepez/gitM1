@@ -16,7 +16,7 @@ services:
 
   api_membres:
     container_name: api_membres
-    build: ./membres
+    build: ./membre
     ports:
       - "8050:8050"
     environment:
