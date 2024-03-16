@@ -1,0 +1,539 @@
+{
+	"info": {
+		"_postman_id": "a83e6dcd-a20c-406c-8662-f5ad501f0a1c",
+		"name": "API Project M1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24728211",
+		"_collection_link": "https://bold-robot-909444.postman.co/workspace/New-Team-Workspace~f21f1fab-b74e-4386-9768-23bdf415e044/collection/24728211-a83e6dcd-a20c-406c-8662-f5ad501f0a1c?action=share&source=collection_link&creator=24728211"
+	},
+	"item": [
+		{
+			"name": "core",
+			"item": [
+				{
+					"name": "lieux",
+					"item": [
+						{
+							"name": "Lister les informations de tous les lieux",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}/8000/cors/lieux",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"8000",
+										"cors",
+										"lieux"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lister les informations d'un lieu",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}/8000/cors/lieux/3",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"8000",
+										"cors",
+										"lieux",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Créer un lieux",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}/8000/cors/lieux",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"8000",
+										"cors",
+										"lieux"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Mettre à jour un lieu",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}/8000/cors/lieux/4",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"8000",
+										"cors",
+										"lieux",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Supprimer un lieu",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}/8000/cors/lieux/6",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"8000",
+										"cors",
+										"lieux",
+										"6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "commentaires",
+			"item": [
+				{
+					"name": "liste pour un membre",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>Comment Content</th>",
+									"        <th>Event ID</th>",
+									"        <th>Member ID</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response}}",
+									"        <tr>",
+									"            <td>{{contenu_commentaire}}</td>",
+									"            <td>{{id_evenement}}</td>",
+									"            <td>{{id_membre}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return { response: pm.response.json() };",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_commentaires}}/commentaires/membre/a",
+							"host": [
+								"{{localhost}}{{port_commentaires}}"
+							],
+							"path": [
+								"commentaires",
+								"membre",
+								"a"
+							]
+						},
+						"description": "Cette requête liste les commentaires d'un membre."
+					},
+					"response": []
+				},
+				{
+					"name": "liste pour un evenement",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_commentaires}}/commentaires/evenements/1",
+							"host": [
+								"{{localhost}}{{port_commentaires}}"
+							],
+							"path": [
+								"commentaires",
+								"evenements",
+								"1"
+							]
+						},
+						"description": "Cette requête liste les commentaires d'un événement."
+					},
+					"response": []
+				},
+				{
+					"name": "Insertion commentaire",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_commentaires}}/commentaires",
+							"host": [
+								"{{localhost}}{{port_commentaires}}"
+							],
+							"path": [
+								"commentaires"
+							]
+						},
+						"description": "Cette requête insère un commentaire."
+					},
+					"response": []
+				},
+				{
+					"name": "Suppression commentaire",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_commentaires}}/commentaires/1",
+							"host": [
+								"{{localhost}}{{port_commentaires}}"
+							],
+							"path": [
+								"commentaires",
+								"1"
+							]
+						},
+						"description": "Cette requête supprime un commentaire en fonction de l'id du commentaire."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "evenements",
+			"item": [
+				{
+					"name": "inscription",
+					"item": [
+						{
+							"name": "Inscription",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{port_evenements}}/evenements/inscription",
+									"host": [
+										"{{localhost}}{{port_evenements}}"
+									],
+									"path": [
+										"evenements",
+										"inscription"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inscription par membre",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{port_evenements}}/evenements/inscription/membre/4",
+									"host": [
+										"{{localhost}}{{port_evenements}}"
+									],
+									"path": [
+										"evenements",
+										"inscription",
+										"membre",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inscriptions par evenement",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{port_evenements}}/evenements/inscription/evenement/4",
+									"host": [
+										"{{localhost}}{{port_evenements}}"
+									],
+									"path": [
+										"evenements",
+										"inscription",
+										"evenement",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Suppression inscription",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{port_evenements}}/evenements/inscription/4/3",
+									"host": [
+										"{{localhost}}{{port_evenements}}"
+									],
+									"path": [
+										"evenements",
+										"inscription",
+										"4",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "evenement",
+					"item": [
+						{
+							"name": "Liste evenement",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{port_evenements}}/evenements",
+									"host": [
+										"{{localhost}}{{port_evenements}}"
+									],
+									"path": [
+										"evenements"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "creation",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{port_evenements}}/evenements",
+									"host": [
+										"{{localhost}}{{port_evenements}}"
+									],
+									"path": [
+										"evenements"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "evenement",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{port_evenements}}/evenements/4",
+									"host": [
+										"{{localhost}}{{port_evenements}}"
+									],
+									"path": [
+										"evenements",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Liste membres par evenement",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{port_evenements}}/evenements/4/membres",
+									"host": [
+										"{{localhost}}{{port_evenements}}"
+									],
+									"path": [
+										"evenements",
+										"4",
+										"membres"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "modification",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{port_evenements}}/evenements/4",
+									"host": [
+										"{{localhost}}{{port_evenements}}"
+									],
+									"path": [
+										"evenements",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "suppression",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{port_evenements}}/evenements/9",
+									"host": [
+										"{{localhost}}{{port_evenements}}"
+									],
+									"path": [
+										"evenements",
+										"9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "lieux",
+			"item": [
+				{
+					"name": "Lister les informations de tous les lieux",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_lieux}}/lieux",
+							"host": [
+								"{{localhost}}{{port_lieux}}"
+							],
+							"path": [
+								"lieux"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lister les informations d'un lieu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_lieux}}/lieux/1",
+							"host": [
+								"{{localhost}}{{port_lieux}}"
+							],
+							"path": [
+								"lieux",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Créer un lieu",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_lieux}}/lieux",
+							"host": [
+								"{{localhost}}{{port_lieux}}"
+							],
+							"path": [
+								"lieux"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mettre à jour un lieu",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_lieux}}/lieux/3",
+							"host": [
+								"{{localhost}}{{port_lieux}}"
+							],
+							"path": [
+								"lieux",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Supprimer un lieu",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_lieux}}/lieux/4",
+							"host": [
+								"{{localhost}}{{port_lieux}}"
+							],
+							"path": [
+								"lieux",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "membres",
+			"item": []
+		}
+	]
+}
