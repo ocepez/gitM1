@@ -533,7 +533,114 @@
 		},
 		{
 			"name": "membres",
-			"item": []
+			"item": [
+				{
+					"name": "membres",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_membres}}/membres",
+							"host": [
+								"{{localhost}}{{port_membres}}"
+							],
+							"path": [
+								"membres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "membre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_membres}}/membres/1",
+							"host": [
+								"{{localhost}}{{port_membres}}"
+							],
+							"path": [
+								"membres",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "membre",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_membres}}/membres/1",
+							"host": [
+								"{{localhost}}{{port_membres}}"
+							],
+							"path": [
+								"membres",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "membre",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_membres}}/membres/1",
+							"host": [
+								"{{localhost}}{{port_membres}}"
+							],
+							"path": [
+								"membres",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "membres",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_membres}}/membres",
+							"host": [
+								"{{localhost}}{{port_membres}}"
+							],
+							"path": [
+								"membres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "connexion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{port_membres}}/membres/connexion",
+							"host": [
+								"{{localhost}}{{port_membres}}"
+							],
+							"path": [
+								"membres",
+								"connexion"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
