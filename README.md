@@ -17,6 +17,11 @@ git clone https://github.com/ocepez/gitM1.git
 ```bash
 docker-compose up -d --build
 ```
+Pour avoir un jeu de données Mongodb et Mariadb:
+```bash
+sudo ./mongodb.sh
+sudo ./volume.sh
+```
 Pour arrêter les APIS : 
 ```bash
 docker-compose down -v
