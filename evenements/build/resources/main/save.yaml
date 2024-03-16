@@ -1,0 +1,18 @@
+# Configuration de la base de données MariaDB
+spring:
+  datasource:
+    url: jdbc:mariadb://mariadb:3306/e21901204_db2
+    username: root
+    password: root
+
+  # Configuration de Hibernate
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+    hibernate:
+      ddl-auto: update
+
+# Configuration du port du serveur Tomcat
+server:
+  port: 8040
