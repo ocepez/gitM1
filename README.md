@@ -2,7 +2,31 @@
 
 Cette application web vise à faciliter la gestion des événements d'une association ainsi que des informations relatives à ses membres. L'application propose plusieurs services implémentés à l'aide de différentes technologies telles que Servlet et Spring, et repose sur des serveurs de bases de données SQL et MongoDB.
 
+## Auteurs
+ -- Maxime Andre
+ -- Oceane Pezennec
+ -- Xavier Flegeau
 ## Entités principales
+
+## Comment lancer le projet
+Vous devrez d'abord installer le projet.
+```bash
+git clone https://github.com/ocepez/gitM1.git
+```
+À la racine du projet installé. Pour lancer les APIs côté back :
+```bash
+docker-compose up -d --build
+```
+Pour arrêter les APIS : 
+```bash
+docker-compose down -v
+```
+Pour lancer le serveur de développement, utilisez la commande :
+```bash
+cd front
+npm run server
+```
+
 
 ### Membres
 
@@ -85,23 +109,92 @@ npm run server
 ## API Événements (BACKEND)
 
 ### Structure du projet
+L'API est implémentée en Spring.
+Utilisation d’une base de données MariaDB.
+L’API Événements permet de :
+ - Récupérer la liste de tous les événements stockés en base de données.
+ - Ajouter un événement en base de données.
+ - Récupérer les informations d’un événement via son identifiant.
+ - Mettre à jour les informations d’un événement en base de données (avec son identifiant).
+ - Supprimer un événement en base de données (avec son identifiant).
+ - Récupérer la liste de membres inscrits à un événement (avec son identifiant).
+ - Inscrire un membre à un événement.
+ - Récupérer la liste des inscriptions d’un membre (avec l’identifiant du membre).
+ - Supprimer l’inscription d’un membre à un événement (avec l’identifiant du membre et de l’événement).
 
 ### Mise en place
 
+Pour lancer le serveur de l'api Événements, utilisez la commande :
+```bash
+docker-compose up evenements 
+```
+#### Swagger
+```bash
+locahost:8040/swagger-ui/index.html
+```
 ## API Membres (BACKEND)
 
 ### Structure du projet
+L'API est implémentée en Sping.
+Utilisation d’une base de données MariaDB.
+
+L’API Membres permet de :
+ - Créer une session de connexion pour un membre (avec son email et son mot de passe).
+ - Récupérer la liste de tous les membres stockés en base de données.
+ - Ajouter un membre en base de données.
+ - Récupérer les informations d’un membre via son identifiant.
+ - Mettre à jour les informations d’un membre en base de données (avec son identifiant).
+ - Supprimer un membre en base de données (avec son identifiant).
+ - Récupérer la liste des événements pour lesquels le membre est inscrit (avec son identifiant).
 
 ### Mise en place
-
+Pour lancer le serveur de l'api Membres, utilisez la commande :
+```bash
+docker-compose up membres 
+```
+#### Swagger
+```bash
+locahost:8050/swagger-ui/index.html
+```
 ## API Commentaires (BACKEND)
 
 ### Structure du projet
+L'API est implémentée en Servlet.
+Utilisation d’une base de données MongoDB.
+
+L’API Commentaire permet de :
+ - Ajouter un commentaire en base de données.
+ - Supprimer un commentaire en base de données (avec son identifiant).
+ - Récupérer la liste des commentaires qu’un membre a posté (avec l’identifiant du membre).
+ - Récupérer la liste des commentaires d’un événement (avec l’identifiant de l’événement).
 
 ### Mise en place
-
+Pour lancer le serveur de l'api Commentaires, utilisez la commande :
+```bash
+docker-compose up commentaires 
+```
+#### Swagger
+```bash
+locahost:8080/swagger
+```
 ## API Lieux (BACKEND)
 
 ### Structure du projet
+l'API est implémentée en Servlet.
+Utilisation d’une base de données MariaDB.
+
+L’API Lieux permet de :
+ - Récupérer la liste de tous les lieux stockés en base de données.
+ - Ajouter un lieu en base de données.
+ - Récupérer les informations d’un lieu via son identifiant.
+ - Supprimer un lieu en base de données (avec son identifiant).
 
 ### Mise en place
+Pour lancer le serveur de l'api Lieux, utilisez la commande :
+```bash
+docker-compose up lieux 
+```
+#### Swagger
+```bash
+locahost:9080/swagger
+```
