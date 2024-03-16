@@ -13,6 +13,20 @@ services:
       - mariadb
     networks:
       - backend1
+
+  api_membres:
+    container_name: api_membres
+    build: ./membres
+    ports:
+      - "8050:8050"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/e21901204_db2
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - mariadb
+    networks:
+      - backend1
   api_commentaires:
     image: tomcat:latest
     container_name: api_commentaires
